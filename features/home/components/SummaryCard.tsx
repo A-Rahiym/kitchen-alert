@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import Arrow from "../../../assets/ui/arrow.svg";
+import Arrow from "@/assets/icons/ui/arrow.svg";
 import { colors } from "../../../design";
 
 type SummaryCardProps = {

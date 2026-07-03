@@ -1,8 +1,8 @@
-import { colors } from "../../design";
-import HomeSvg from "../../assets/icons/home.svg";
-import PantrySvg from "../../assets/icons/pantry.svg";
-import InsightsSvg from "../../assets/icons/insights.svg";
-import SettingsSvg from "../../assets/icons/settings.svg";
+import { colors } from "@/design";
+import HomeSvg from "@/assets/icons/nav/home.svg";
+import PantrySvg from "@/assets/icons/nav/pantry.svg";
+import InsightsSvg from "@/assets/icons/nav/insights.svg";
+import SettingsSvg from "@/assets/icons/nav/settings.svg";
 
 const iconComponents = {
   home: HomeSvg,

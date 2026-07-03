@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Inter"],
       },
       colors: {
         primary: "#FF7616",
@@ -15,6 +15,7 @@ module.exports = {
         tertiary: "#0D1F2D",
         accent: "#D32F2F",
         background: "#FFF8F0",
+        border:"#E5E1DA",
         surface: "#FFFFFF",
         "surface-alt": "#FFF0E0",
         heading: "#0D1F2D",

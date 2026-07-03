@@ -14,6 +14,8 @@ export const colors = {
   muted: "#9CA3AF",
   inverse: "#FFFFFF",
 
+  border:'#E5E1DA',
+
   stroke: "#E5E7EB",
   strokeLight: "#F3F4F6",
 
@@ -24,5 +26,4 @@ export const colors = {
   statusExpiring: "#F5A623",
   statusFresh: "#4CAF50",
 } as const;
-
 export type ColorKey = keyof typeof colors;

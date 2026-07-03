@@ -1,10 +1,10 @@
 import type { ComponentType } from "react";
-import Gas from "@/assets/items/gas.svg";
-import Egg from "@/assets/items/egg.svg";
-import Rice from "@/assets/items/rice.svg";
-import Flour from "@/assets/items/flour.svg";
-import Oil from "@/assets/items/oil.svg";
-import Kerosene from "@/assets/items/kerosene.svg";
+import Gas from "@/assets/icons/items/gas.svg";
+import Egg from "@/assets/icons/items/egg.svg";
+import Rice from "@/assets/icons/items/rice.svg";
+import Flour from "@/assets/icons/items/flour.svg";
+import Oil from "@/assets/icons/items/oil.svg";
+import Kerosene from "@/assets/icons/items/kerosene.svg";
 
 type IconComponent = ComponentType<{ width?: number; height?: number; color?: string }>;
 
