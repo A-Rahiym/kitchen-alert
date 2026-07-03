@@ -1,14 +1,14 @@
 import { ScrollView, View, Text, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import Bell from "@/assets/icons/notification.svg";
-import Graph from "@/assets/ui/graph.svg";
-import Arrow from "@/assets/ui/arrow.svg";
+import Bell from "@/assets/icons/ui/notification.svg";
+import Graph from "@/assets/icons/ui/graph.svg";
+import Arrow from "@/assets/icons/ui/arrow.svg";
 
 import { pantries } from "@/features/pantry/data";
 import { colors } from "@/design";
 import { SummaryCard } from "@/features/home/components/SummaryCard";
 import { PantryItemCard } from "@/features/home/components/PantryItemCard";
-import Add from "@/assets/ui/add.svg";
+import Add from "@/assets/icons/ui/add.svg";
 import { getPantryIcon } from "@/features/pantry/utils";
 
 
@@ -20,10 +20,10 @@ export default function HomeScreen() {
             style={{
                 flex: 1,
                 backgroundColor: colors.background,
-                paddingTop: 24,
-                paddingLeft: 24,
-                paddingRight: 24,
-                paddingBottom: 24,
+                paddingTop: 18,
+                paddingLeft: 18,
+                paddingRight: 18,
+                paddingBottom: 18,
             }}
             contentContainerStyle={{
                 flexGrow: 1,
@@ -46,7 +46,7 @@ export default function HomeScreen() {
                 <View className="flex-row items-center justify-between gap-2 px-4">
                     <View className="gap-2 flex-col">
                         <Text className="text-body font-bold text-sm">Monthly Spend</Text>
-                        <Text className="mt-2 text-3xl font-bold text-body">N220,500.000</Text>
+                        <Text className="mt-2 text-3xl font-bold text-body">₦220,500.000</Text>
                         <Text className="text-body font-light text-sm">2% vs last month</Text>
                     </View>
                     <Graph width={96} height={96} color={colors.tabInactive} />

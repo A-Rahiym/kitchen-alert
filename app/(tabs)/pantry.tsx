@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { View, Text, TextInput, ScrollView } from "react-native";
 import { colors } from "@/design";
-import Add from "@/assets/ui/add.svg";
-import Search from "@/assets/ui/search.svg";
-import Arrow from "@/assets/ui/arrow.svg";
+import Add from "@/assets/icons/ui/add.svg";
+import Search from "@/assets/icons/ui/search.svg";
+import Arrow from "@/assets/icons/ui/arrow.svg";
 import { SegmentedSwitch } from "@/features/home/components/segmentedswitch";
 import { PantryItemCard } from "@/features/home/components/PantryItemCard";
 import { pantries } from "@/features/pantry/data";
 import { getPantryIcon } from "@/features/pantry/utils";
 
 export default function PantryScreen() {
-  const [selected, setSelected] = useState("saved");
+  const [selected, setSelected] = useState("staples");
 
   return (
     <View className="flex-1 bg-background p-4 pt-6">
