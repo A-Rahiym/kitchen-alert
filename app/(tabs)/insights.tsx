@@ -1,56 +1,32 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import Change from '@/assets/icons/ui/change.svg'
-import { useState, } from "react";
-import { SegmentedSwitch } from "@/features/home/components/segmentedswitch";
+import { useState } from "react";
+import { View, Text } from "react-native";
+import { SegmentedSwitch } from "@/components/ui/segmentedswitch";
 import { LineChart, BarChart } from "react-native-gifted-charts";
-import { colors } from "@/design/colors";
-
+import { colors } from "@/design";
+import { weeklyData, monthlyData , graphSpacing } from "@/features/insights/data";
+import Change from "@/assets/icons/ui/change.svg";
 
 export default function InsightsScreen() {
-
   const [selected, setSelected] = useState("month");
   const [chartWidth, setChartWidth] = useState(0);
-
-  const data = [{ value: 20, label: "20" },
-  { value: 45, label: "25" },
-  { value: 28, label: "28" },
-  { value: 30, label: "30" },
-  { value: 15, label: "15" },
-  { value: 20, label: "20" },
-  ]
-
-  const monthlydata = [
-    { value: 20, label: "J" }, // Jan
-    { value: 45, label: "F" }, // Feb
-    { value: 28, label: "M" }, // Mar
-    { value: 30, label: "A" }, // Apr
-    { value: 15, label: "M" }, // May
-    { value: 20, label: "J" }, // Jun
-    { value: 35, label: "J" }, // Jul
-    { value: 40, label: "A" }, // Aug
-    { value: 32, label: "S" }, // Sep
-    { value: 25, label: "O" }, // Oct
-    { value: 18, label: "N" }, // Nov
-    { value: 42, label: "D" }, // Dec
-  ];
+  const data = selected === "month" ? weeklyData : monthlyData;
+  const spacingValue = selected === "month" ? graphSpacing.month : graphSpacing.year;
 
   return (
-    <View className="flex-1  items-center justify-start  bg-background p-6">
+    <View className="flex-1 items-center justify-start bg-background p-6">
       <View className="w-full flex-col items-start justify-between">
-        <Text className="text-[28px] font-bold text-heading">Insights</Text>
+        <Text className="text-3xl font-bold text-heading">Insights</Text>
         <Text className="text-body font-light text-sm">This {selected}</Text>
       </View>
 
-      <View className="mt-2 w-full bg-[#EFE6E0] p-0.5  rounded-xl border border-stroke">
+      <View className="mt-2 w-full p-0.5">
         <SegmentedSwitch
           value={selected}
           onChange={setSelected}
-          options={
-            [
-              { label: 'm', value: 'month' },
-              { label: 'y', value: 'year' }
-            ]
-          }
+          options={[
+            { label: "m", value: "month" },
+            { label: "y", value: "year" },
+          ]}
         />
       </View>
 
@@ -59,26 +35,26 @@ export default function InsightsScreen() {
           <View className="gap-1 flex-col">
             <Text className="text-body font-bold text-md">This year</Text>
             <Text className="mt-2 text-3xl font-bold text-body">₦1,220,500.000</Text>
-            <Text className="text-status-danger font-light text-sm">18% <Text className="text-muted">vs last year</Text> </Text>
+            <Text className="text-status-danger font-light text-sm">
+              18% <Text className="text-muted">vs last year</Text>
+            </Text>
           </View>
         </View>
-        <View className="mt-2 w-full py-1  bg-surface"
-          onLayout={(e) => {
-            setChartWidth(e.nativeEvent.layout.width);
-          }}>
+        <View
+          className="mt-2 w-full py-1 bg-surface"
+          onLayout={(e) => { setChartWidth(e.nativeEvent.layout.width); }}
+        >
           <LineChart
             initialSpacing={0}
             endSpacing={0}
             areaChart
             width={chartWidth}
             data={data}
-            spacing={65}
+            spacing={spacingValue}
             height={75}
             hideRules
             hideYAxisText
-            xAxisLabelTextStyle={{
-              fontSize: 10
-            }}
+            xAxisLabelTextStyle={{ fontSize: 10 }}
             xAxisThickness={0}
             yAxisThickness={0}
             hideDataPoints
@@ -89,14 +65,12 @@ export default function InsightsScreen() {
             endOpacity={0.1}
           />
         </View>
-
       </View>
 
       <View className="w-full flex-row justify-start items-center">
-        <Text className="text-body mt-2 font-semibold text-xl">
-          Spending Habit
-        </Text>
+        <Text className="text-body mt-2 font-semibold text-xl">Spending Habit</Text>
       </View>
+
       <View className="mt-2 w-full rounded-2xl bg-surface border border-border py-4">
         <View className="flex justify-between gap-2 px-4">
           <View className="gap-2 flex-col">
@@ -104,52 +78,40 @@ export default function InsightsScreen() {
             <Text className="mt-2 text-3xl font-bold text-body">₦128,500.49</Text>
             <View className="mb-1 flex flex-col justify-between gap-3">
               <View className="flex flex-row justify-start gap-3 items-center">
-                <Text className="text-status-danger font-medium text-md">2026 </Text>
+                <Text className="text-status-danger font-medium text-md">2026</Text>
                 <Change />
               </View>
-              <View
-                className="w-full h-0.5 bg-border "
-              />
+              <View className="w-full h-0.5 bg-border" />
             </View>
           </View>
         </View>
         <View
-          className="mt- w-full bg-surface"
-          onLayout={(e) => {
-            setChartWidth(e.nativeEvent.layout.width);
-          }}
+          className="mt-2 w-full bg-surface"
+          onLayout={(e) => { setChartWidth(e.nativeEvent.layout.width); }}
         >
           <BarChart
             width={chartWidth}
-            data={monthlydata}
+            data={monthlyData}
             height={120}
             barBorderTopLeftRadius={4}
             barBorderTopRightRadius={4}
-
             hideRules
             barWidth={19}
             spacing={8}
             initialSpacing={5}
             endSpacing={0}
-
-
             frontColor={colors.primary}
             barBorderColor={colors.border}
-
-
             hideYAxisText
             xAxisThickness={0.5}
             yAxisThickness={0.5}
-
             xAxisLabelTextStyle={{
               fontSize: 9,
-              fontWeight:"bold",
+              fontWeight: "bold",
               color: colors.body,
             }}
-            
           />
         </View>
-
       </View>
     </View>
   );

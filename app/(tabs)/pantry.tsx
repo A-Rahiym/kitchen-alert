@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { View, Text, TextInput, ScrollView } from "react-native";
+import { View, Text, TextInput, ScrollView , TouchableOpacity} from "react-native";
 import { colors } from "@/design";
 import Add from "@/assets/icons/ui/add.svg";
 import Search from "@/assets/icons/ui/search.svg";
 import Arrow from "@/assets/icons/ui/arrow.svg";
-import { SegmentedSwitch } from "@/features/home/components/segmentedswitch";
+import { SegmentedSwitch } from "@/components/ui/segmentedswitch";
 import { PantryItemCard } from "@/features/home/components/PantryItemCard";
 import { pantries } from "@/features/pantry/data";
 import { getPantryIcon } from "@/features/pantry/utils";
@@ -13,16 +13,16 @@ export default function PantryScreen() {
   const [selected, setSelected] = useState("staples");
 
   return (
-    <View className="flex-1 bg-background p-4 pt-6">
+    <View className="flex-1 font-sans bg-background p-4 pt-6">
       <View className="w-full mb-2 flex-row items-center justify-between">
-        <Text className="text-[24px] font-bold text-heading">Pantry</Text>
-        <View className="flex-row items-center bg-primary gap-2 p-3 rounded-xl">
-          <Add width={12} height={12} color={colors.surface} />
+        <Text className="text-3xl font-sans font-bold text-heading">Pantry</Text>
+        <TouchableOpacity className="flex-row items-center bg-tertiary gap-2 p-3 rounded-xl">
+          <Add width={12} height={12}  fill={colors.surface} />
           <Text className="text-[12px] font-medium text-surface">Add</Text>
-        </View>
+        </TouchableOpacity>
       </View>
 
-      <View className="my-2 w-full bg-surface flex-row items-center py-0.5 px-3 rounded-xl gap-2 border border-stroke">
+      <View className="my-2 w-full bg-surface flex-row items-center py-2 px-3 rounded-xl gap-2 border border-stroke">
         <Search width={12} height={12} color={colors.tabInactive} />
         <TextInput
           placeholder="Search pantry items"
@@ -31,7 +31,7 @@ export default function PantryScreen() {
         />
       </View>
 
-      <View className="mt-2 w-full bg-[#EFE6E0] p-0.5  rounded-xl border border-stroke">
+      <View className="mt-2 w-full p-0.5  rounded-xl">
         <SegmentedSwitch
           value={selected}
           onChange={setSelected}
@@ -51,7 +51,7 @@ export default function PantryScreen() {
         </View>
         <View className="flex-row items-center gap-1">
           <Text className="text-status-danger font-medium text-sm">↓ 2 Low stock</Text>
-          <Arrow width={15} height={15} color={colors.tabInactive} />
+          <Arrow width={15} height={15} stroke={colors.primary} />
         </View>
       </View>
 

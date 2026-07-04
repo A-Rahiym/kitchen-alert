@@ -3,6 +3,9 @@ export const colors = {
   primaryLight: "#F5A623",
   secondary: "#4CAF50",
   secondaryLight: "#81C784",
+  tertiary: "#0D1F2D",
+  tertiaryalt: "#143046",
+  tertiaryLight: "#2A6593",
   accent: "#D32F2F",
 
   background: "#FFF8F0",
@@ -14,7 +17,7 @@ export const colors = {
   muted: "#9CA3AF",
   inverse: "#FFFFFF",
 
-  border:'#E5E1DA',
+  border: '#E5E1DA',
 
   stroke: "#E5E7EB",
   strokeLight: "#F3F4F6",

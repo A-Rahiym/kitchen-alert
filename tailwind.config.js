@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
+  content: ["./app/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
+    "./features/**/*.{js,jsx,ts,tsx}"
+  ],
+
+
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
@@ -13,9 +18,11 @@ module.exports = {
         secondary: "#4CAF50",
         "secondary-light": "#81C784",
         tertiary: "#0D1F2D",
+        "tertiary-alrt": "#143046",
+        "tertiary-light": "#2A6593",
         accent: "#D32F2F",
         background: "#FFF8F0",
-        border:"#E5E1DA",
+        border: "#E5E1DA",
         surface: "#FFFFFF",
         "surface-alt": "#FFF0E0",
         heading: "#0D1F2D",

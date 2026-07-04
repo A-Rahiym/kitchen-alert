@@ -37,7 +37,7 @@ export default function HomeScreen() {
                     <Text className="mt-2 text-black font-bold text-xl"> Adam</Text>
                 </View>
                 <View className="flex-row items-center gap-6">
-                    <Bell width={18} height={18} color={colors.tabInactive} />
+                    <Bell width={18} height={18} color={colors.tabInactive} stroke={colors.primary} />
                     <View className="w-[38px] h-[38px] rounded-full bg-primary-light" />
                 </View>
             </View>
@@ -68,9 +68,9 @@ export default function HomeScreen() {
 
             <View className="w-full mt-4">
                 <LinearGradient
-                    colors={["#0D1F2D", "#143046", "#2A6593"]}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
+                    colors={[colors.tertiary, colors.tertiaryalt, colors.tertiaryLight]}
+                    start={{ x: 0, y: 1.2 }}
+                    end={{ x: 0, y: 0 }}
                     style={{ borderRadius: 18 }}
                 >
                     <View className="w-full flex-row items-center justify-around px-2">

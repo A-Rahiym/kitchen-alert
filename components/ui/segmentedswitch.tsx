@@ -17,7 +17,7 @@ export function SegmentedSwitch({
   onChange,
 }: Props) {
   return (
-    <View className="flex-row rounded-xl bg-[#000000] p-1">
+    <View className="flex-row bg-border rounded-xl p-1">
       {options.map((option) => {
         const active = option.value === value;
 

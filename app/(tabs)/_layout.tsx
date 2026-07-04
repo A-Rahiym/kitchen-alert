@@ -20,6 +20,7 @@ export default function TabLayout() {
       className="flex-1"
       style={{
         paddingTop: insets.top,
+        backgroundColor: colors.background,
       }}
     >
       <Navbar
