@@ -21,6 +21,19 @@ export function getPantryIcon(name: string): IconComponent {
   return iconMap[name] ?? Gas;
 }
 
+const iconKeyMap: Record<string, IconComponent> = {
+  gas: Gas,
+  egg: Egg,
+  rice: Rice,
+  flour: Flour,
+  oil: Oil,
+  kerosene: Kerosene,
+};
+
+export function getPantryIconByKey(key: string): IconComponent {
+  return iconKeyMap[key] ?? Gas;
+}
+
 export function calculatePercentage(daysLeft: number, totalDays: number): number {
   return Math.round((daysLeft / totalDays) * 100);
 }
