@@ -4,8 +4,11 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 import { BarChart } from "react-native-gifted-charts";
 import { colors } from "@/design";
 import { Donut } from "@/components/ui/Donut";
-import { getPantryIcon, calculatePercentage, getDonutColor } from "@/features/pantry/utils";
-import { pantries } from "@/features/pantry/data";
+import { usePantryStore } from "@/stores/pantryStore";
+import { useMonthlySpend } from "@/hooks/useMonthlySpend";
+import { useSpendHistory } from "@/hooks/useSpendHistory";
+import { useItemDaysLeft } from "@/features/pantry/hooks/useItemDaysLeft";
+import { getPantryIconByKey, getDonutColor } from "@/features/pantry/utils";
 import Edit from "@/assets/icons/ui/edit.svg";
 import Chevron from "@/assets/icons/ui/arrow.svg";
 import Back from "@/assets/icons/ui/back.svg";
@@ -13,11 +16,15 @@ import Back from "@/assets/icons/ui/back.svg";
 export default function PantryDetailScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const item = pantries.find((p) => p.id === Number(id));
+  const item = usePantryStore((s) => s.items.find((i) => i.id === id));
 
   const [chartWidth, setChartWidth] = useState(0);
 
-  if (!item) {
+  const { daysLeft, totalDays, pct } = useItemDaysLeft(id ?? "");
+  const monthlySpend = useMonthlySpend(id ?? "");
+  const history = useSpendHistory(id ?? "");
+
+  if (!item || !id) {
     return (
       <View className="flex-1 bg-background items-center justify-center">
         <Text className="text-lg text-muted">Item not found</Text>
@@ -26,13 +33,12 @@ export default function PantryDetailScreen() {
     );
   }
 
-  const Icon = getPantryIcon(item.name);
-  const pct = calculatePercentage(item.daysLeft, item.totalDays);
-  const totalSpend = item.history.reduce((sum, h) => sum + h.spend, 0);
+  const Icon = getPantryIconByKey(item.icon);
+  const totalSpend = history.reduce((sum, h) => sum + h.value, 0);
 
-  const barData = item.history.map((h) => ({
-    value: h.spend,
-    label: h.month,
+  const barData = history.map((h) => ({
+    value: h.value,
+    label: h.label,
   }));
 
   return (
@@ -71,7 +77,7 @@ export default function PantryDetailScreen() {
           </View>
           <View className="flex-row items-end justify-between">
             <View>
-              <Text className="text-3xl font-bold text-heading">{item.daysLeft}</Text>
+              <Text className="text-3xl font-bold text-heading">{daysLeft}</Text>
               <Text className="text-[10px] font-medium text-muted">days left</Text>
             </View>
             <Donut size={32} strokeWidth={4} progress={pct} color={getDonutColor(pct)} />
@@ -86,7 +92,7 @@ export default function PantryDetailScreen() {
             </View>
           </View>
           <View>
-            <Text className="text-lg font-bold text-heading">₦{item.price.toLocaleString()}.00</Text>
+            <Text className="text-lg font-bold text-heading">₦{monthlySpend.toLocaleString()}.00</Text>
             <Text className="text-[10px] font-medium text-muted">This month</Text>
           </View>
         </View>
