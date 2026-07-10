@@ -3,14 +3,18 @@ import { View, Text } from "react-native";
 import { SegmentedSwitch } from "@/components/ui/segmentedswitch";
 import { LineChart, BarChart } from "react-native-gifted-charts";
 import { colors } from "@/design";
-import { weeklyData, monthlyData , graphSpacing } from "@/features/insights/data";
 import Change from "@/assets/icons/ui/change.svg";
+import { useDailySpend } from "@/features/insights/hooks/useDailySpend";
+import { useYearlyBarData } from "@/features/insights/hooks/useYearlyBarData";
+import { useYearlyTotal } from "@/features/insights/hooks/useYearlyTotal";
 
 export default function InsightsScreen() {
   const [selected, setSelected] = useState("month");
   const [chartWidth, setChartWidth] = useState(0);
-  const data = selected === "month" ? weeklyData : monthlyData;
-  const spacingValue = selected === "month" ? graphSpacing.month : graphSpacing.year;
+
+  const dailySpend = useDailySpend();
+  const spendingBarData = useYearlyBarData();
+  const totalYearSpend = useYearlyTotal();
 
   return (
     <View className="flex-1 items-center justify-start bg-background p-6">
@@ -34,37 +38,39 @@ export default function InsightsScreen() {
         <View className="flex justify-between gap-2 px-4">
           <View className="gap-1 flex-col">
             <Text className="text-body font-bold text-md">This year</Text>
-            <Text className="mt-2 text-3xl font-bold text-body">₦1,220,500.000</Text>
+            <Text className="mt-2 text-3xl font-bold text-body">₦{totalYearSpend.toLocaleString()}.00</Text>
             <Text className="text-status-danger font-light text-sm">
               18% <Text className="text-muted">vs last year</Text>
             </Text>
           </View>
         </View>
-        <View
-          className="mt-2 w-full py-1 bg-surface"
-          onLayout={(e) => { setChartWidth(e.nativeEvent.layout.width); }}
-        >
-          <LineChart
-            initialSpacing={0}
-            endSpacing={0}
-            areaChart
-            width={chartWidth}
-            data={data}
-            spacing={spacingValue}
-            height={75}
-            hideRules
-            hideYAxisText
-            xAxisLabelTextStyle={{ fontSize: 10 }}
-            xAxisThickness={0}
-            yAxisThickness={0}
-            hideDataPoints
-            color={colors.primaryLight}
-            startFillColor={colors.primaryLight}
-            startOpacity={0.3}
-            endFillColor={colors.background}
-            endOpacity={0.1}
-          />
-        </View>
+        {selected === "month" && (
+          <View
+            className="mt-2 w-full py-1 bg-surface"
+            onLayout={(e) => setChartWidth(e.nativeEvent.layout.width)}
+          >
+            <LineChart
+              initialSpacing={0}
+              endSpacing={0}
+              areaChart
+              width={chartWidth}
+              data={dailySpend}
+              spacing={100}
+              height={75}
+              hideRules
+              hideYAxisText
+              xAxisLabelTextStyle={{ fontSize: 10 }}
+              xAxisThickness={0}
+              yAxisThickness={0}
+              hideDataPoints
+              color={colors.primaryLight}
+              startFillColor={colors.primaryLight}
+              startOpacity={0.3}
+              endFillColor={colors.background}
+              endOpacity={0.1}
+            />
+          </View>
+        )}
       </View>
 
       <View className="w-full flex-row justify-start items-center">
@@ -75,7 +81,7 @@ export default function InsightsScreen() {
         <View className="flex justify-between gap-2 px-4">
           <View className="gap-2 flex-col">
             <Text className="text-body font-bold text-md">Total Spend</Text>
-            <Text className="mt-2 text-3xl font-bold text-body">₦128,500.49</Text>
+            <Text className="mt-2 text-3xl font-bold text-body">₦{totalYearSpend.toLocaleString()}.00</Text>
             <View className="mb-1 flex flex-col justify-between gap-3">
               <View className="flex flex-row justify-start gap-3 items-center">
                 <Text className="text-status-danger font-medium text-md">2026</Text>
@@ -87,11 +93,11 @@ export default function InsightsScreen() {
         </View>
         <View
           className="mt-2 w-full bg-surface"
-          onLayout={(e) => { setChartWidth(e.nativeEvent.layout.width); }}
+          onLayout={(e) => setChartWidth(e.nativeEvent.layout.width)}
         >
           <BarChart
             width={chartWidth}
-            data={monthlyData}
+            data={spendingBarData}
             height={120}
             barBorderTopLeftRadius={4}
             barBorderTopRightRadius={4}
