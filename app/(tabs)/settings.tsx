@@ -1,9 +1,12 @@
 import { ScrollView, View, Text } from "react-native";
+import { useRouter } from "expo-router";
 import { ProfileCard } from "@/features/settings/components/ProfileCard";
 import { SettingsRow } from "@/features/settings/components/SettingsRow";
 import { settingsItems } from "@/features/settings/data";
 
 export default function SettingsScreen() {
+  const router = useRouter();
+
   return (
     <View className="flex-1 bg-background">
       <ScrollView
@@ -27,6 +30,7 @@ export default function SettingsScreen() {
                 subtitle={item.subtitle}
                 hasToggle={item.hasToggle}
                 showDivider={index !== settingsItems.length - 1}
+                onPress={() => router.push(`/settings/${item.id}`)}
               />
             ))}
           </View>

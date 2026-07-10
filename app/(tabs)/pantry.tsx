@@ -1,23 +1,24 @@
 import { useState } from "react";
+import {useRouter} from "expo-router";
 import { View, Text, TextInput, ScrollView , TouchableOpacity} from "react-native";
 import { colors } from "@/design";
 import Add from "@/assets/icons/ui/add.svg";
 import Search from "@/assets/icons/ui/search.svg";
 import Arrow from "@/assets/icons/ui/arrow.svg";
 import { SegmentedSwitch } from "@/components/ui/segmentedswitch";
-import { PantryItemCard } from "@/features/home/components/PantryItemCard";
+import { PantryItemCard } from "@/components/ui/PantryItemCard";
 import { pantries } from "@/features/pantry/data";
 import { getPantryIcon } from "@/features/pantry/utils";
 
 export default function PantryScreen() {
   const [selected, setSelected] = useState("staples");
-
+  const router = useRouter();
   return (
     <View className="flex-1 font-sans bg-background p-4 pt-6">
       <View className="w-full mb-2 flex-row items-center justify-between">
         <Text className="text-3xl font-sans font-bold text-heading">Pantry</Text>
         <TouchableOpacity className="flex-row items-center bg-tertiary gap-2 p-3 rounded-xl">
-          <Add width={12} height={12}  fill={colors.surface} />
+          <Add width={12} height={12} fill={colors.surface} />
           <Text className="text-[12px] font-medium text-surface">Add</Text>
         </TouchableOpacity>
       </View>
@@ -69,6 +70,7 @@ export default function PantryScreen() {
                 name={item.name}
                 daysLeft={item.daysLeft}
                 totalDays={item.totalDays}
+                onPress={() => router.push(`/pantry/details?id=${item.id}`)}
               />
             </View>
           );

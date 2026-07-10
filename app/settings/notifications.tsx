@@ -1,9 +1,8 @@
 import { View, Text } from "react-native";
 import { useRouter } from "expo-router";
 
-export default function Notifications() {
+export default function NotificationsScreen() {
   const router = useRouter();
-
   return (
     <View className="flex-1 bg-background p-5 pt-6">
       <View className="flex-row items-center gap-3 mb-6">

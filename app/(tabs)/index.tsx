@@ -1,4 +1,5 @@
 import { ScrollView, View, Text, TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import Bell from "@/assets/icons/ui/notification.svg";
 import Graph from "@/assets/icons/ui/graph.svg";
@@ -7,7 +8,7 @@ import Arrow from "@/assets/icons/ui/arrow.svg";
 import { pantries } from "@/features/pantry/data";
 import { colors } from "@/design";
 import { SummaryCard } from "@/features/home/components/SummaryCard";
-import { PantryItemCard } from "@/features/home/components/PantryItemCard";
+import { PantryItemCard } from "@/components/ui/PantryItemCard";
 import Add from "@/assets/icons/ui/add.svg";
 import { getPantryIcon } from "@/features/pantry/utils";
 
@@ -15,6 +16,7 @@ import { getPantryIcon } from "@/features/pantry/utils";
 
 
 export default function HomeScreen() {
+    const router = useRouter();
     return (
         < ScrollView
             style={{
@@ -117,6 +119,7 @@ export default function HomeScreen() {
                                 name={item.name}
                                 daysLeft={item.daysLeft}
                                 totalDays={item.totalDays}
+                                onPress={() => router.push(`/pantry/details?id=${item.id}`)}
                             />
                         </View>
                     );

@@ -1,16 +1,15 @@
 import { View, Text } from "react-native";
 import { useRouter } from "expo-router";
 
-export default function LoginsScreen() {
+export default function ExportScreen() {
   const router = useRouter();
-
   return (
     <View className="flex-1 bg-background p-5 pt-6">
       <View className="flex-row items-center gap-3 mb-6">
         <Text className="text-2xl text-muted" onPress={() => router.back()}>‹</Text>
-        <Text className="text-2xl font-bold text-heading">Logins</Text>
+        <Text className="text-2xl font-bold text-heading">Export Data</Text>
       </View>
-      <Text className="text-base text-body">Manage account security</Text>
+      <Text className="text-base text-body">Export your account data</Text>
     </View>
   );
 }

@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import { Donut } from "../../../components/ui/Donut";
-import { calculatePercentage, getDonutColor } from "../../pantry/utils";
+import { Donut } from "./Donut";
+import { calculatePercentage, getDonutColor } from "../../features/pantry/utils";
 
 type PantryItemCardProps = {
   icon: React.ReactNode;
@@ -12,7 +12,6 @@ type PantryItemCardProps = {
 
 export function PantryItemCard({ icon, name, daysLeft, totalDays, onPress }: PantryItemCardProps) {
   const pct = totalDays ? calculatePercentage(daysLeft, totalDays) : undefined;
-
   return (
     <TouchableOpacity
       onPress={onPress}
