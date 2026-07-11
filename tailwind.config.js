@@ -27,7 +27,8 @@ module.exports = {
         "surface-alt": "#FFF0E0",
         heading: "#0D1F2D",
         body: "#0D1F2D",
-        muted: "#9CA3AF",
+        muted: "#666666",
+      
         inverse: "#FFFFFF",
         stroke: "#E5E7EB",
         "stroke-light": "#F3F4F6",
