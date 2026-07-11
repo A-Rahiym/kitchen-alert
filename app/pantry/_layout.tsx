@@ -7,7 +7,7 @@ export default function PantryLayout() {
   const insets = useSafeAreaInsets();
   return (
     <View
-      className="flex-1 bg-background"
+      className="flex-1 bg-white"
       style={{
         paddingTop: insets.top,
       }}

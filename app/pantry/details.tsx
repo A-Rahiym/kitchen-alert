@@ -9,9 +9,10 @@ import { useMonthlySpend } from "@/hooks/useMonthlySpend";
 import { useSpendHistory } from "@/hooks/useSpendHistory";
 import { useItemDaysLeft } from "@/features/pantry/hooks/useItemDaysLeft";
 import { getPantryIconByKey, getDonutColor } from "@/features/pantry/utils";
+import { ChevronCircle } from "@/components/ui/ChevronCircle";
 import Edit from "@/assets/icons/ui/edit.svg";
-import Chevron from "@/assets/icons/ui/arrow.svg";
 import Back from "@/assets/icons/ui/back.svg";
+import Chevron from "@/assets/icons/ui/arrow.svg";
 
 export default function PantryDetailScreen() {
   const router = useRouter();
@@ -71,9 +72,7 @@ export default function PantryDetailScreen() {
               <Text className="text-md font-bold text-heading">Remain</Text>
               <Text className="text-md text-muted">ⓘ</Text>
             </View>
-            <View className="flex justify-center items-center w-6 h-6 p-3 rounded-full bg-background">
-              <Chevron width={8} height={8} color={colors.muted} />
-            </View>
+            <ChevronCircle onPress={() => router.replace(`/pantry/remain?id=${id}`)} />
           </View>
           <View className="flex-row items-end justify-between">
             <View>
@@ -87,9 +86,7 @@ export default function PantryDetailScreen() {
         <View className="flex-1 bg-surface p-4 rounded-2xl border border-border justify-between h-32">
           <View className="flex-row items-center justify-between">
             <Text className="text-md font-bold text-heading">Price</Text>
-            <View className="flex justify-center items-center w-6 h-6 p-3 rounded-full bg-background">
-              <Chevron width={8} height={8} color={colors.muted} />
-            </View>
+            <ChevronCircle />
           </View>
           <View>
             <Text className="text-lg font-bold text-heading">₦{monthlySpend.toLocaleString()}.00</Text>
