@@ -1,3 +1,17 @@
+export interface CategoryGroup {
+  id: string;
+  name: string;
+  icon: string;
+  itemCount: number;
+}
+
+export interface PopularItem {
+  id: string;
+  name: string;
+  icon: string;
+  category: string;
+}
+
 export interface MonthlySpend {
   month: string;
   spend: number;
@@ -12,6 +26,24 @@ export interface PantryItemData {
   price: number;
   history: MonthlySpend[];
 }
+
+export const categoryGroups: CategoryGroup[] = [
+  { id: "cylinder", name: "Cylinder", icon: "gas", itemCount: 3 },
+  { id: "sack", name: "Sack", icon: "rice", itemCount: 3 },
+  { id: "bag", name: "Bag", icon: "milk", itemCount: 3 },
+];
+
+export const popularItems: PopularItem[] = [
+  { id: "pop-gas", name: "Cooking Gas", icon: "gas", category: "cylinder" },
+  { id: "pop-oil", name: "Cooking Oil", icon: "oil", category: "cylinder" },
+  { id: "pop-eggs", name: "Eggs", icon: "egg", category: "bag" },
+  { id: "pop-rice", name: "Rice", icon: "rice", category: "sack" },
+  { id: "pop-kerosene", name: "Kerosene", icon: "kerosene", category: "cylinder" },
+  { id: "pop-flour", name: "Flour", icon: "flour", category: "sack" },
+  { id: "pop-sugar", name: "Sugar", icon: "sugar", category: "bag" },
+  { id: "pop-milk", name: "Milk", icon: "milk", category: "bag" },
+  { id: "pop-butter", name: "Butter", icon: "butter", category: "bag" },
+];
 
 export const pantries: PantryItemData[] = [
   {

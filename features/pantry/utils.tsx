@@ -5,6 +5,9 @@ import Rice from "@/assets/icons/items/rice.svg";
 import Flour from "@/assets/icons/items/flour.svg";
 import Oil from "@/assets/icons/items/oil.svg";
 import Kerosene from "@/assets/icons/items/kerosene.svg";
+import sugar from "@/assets/icons/items/sugar.svg";
+import milk from "@/assets/icons/items/milk.svg";
+import butter from "@/assets/icons/items/butter.svg";
 
 type IconComponent = ComponentType<{ width?: number; height?: number; color?: string }>;
 
@@ -15,6 +18,9 @@ const iconMap: Record<string, IconComponent> = {
   Flour: Flour,
   "Vegetable Oil": Oil,
   Kerosene: Kerosene,
+  Sugar: sugar,
+  Milk: milk,
+  Butter: butter,
 };
 
 export function getPantryIcon(name: string): IconComponent {
@@ -28,6 +34,9 @@ const iconKeyMap: Record<string, IconComponent> = {
   flour: Flour,
   oil: Oil,
   kerosene: Kerosene,
+  sugar: sugar,
+  milk: milk,
+  butter: butter,
 };
 
 export function getPantryIconByKey(key: string): IconComponent {
