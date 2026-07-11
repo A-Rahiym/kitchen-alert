@@ -21,7 +21,10 @@ export default function PantryScreen() {
     <View className="flex-1 font-sans bg-background p-4 pt-6">
       <View className="w-full mb-2 flex-row items-center justify-between">
         <Text className="text-3xl font-sans font-bold text-heading">Pantry</Text>
-        <TouchableOpacity className="flex-row items-center bg-tertiary gap-2 p-3 rounded-xl">
+        <TouchableOpacity
+          onPress={() => router.push("/pantryItem/addItem")}
+          className="flex-row items-center bg-tertiary gap-2 p-3 rounded-xl"
+        >
           <Add width={12} height={12} fill={colors.surface} />
           <Text className="text-[12px] font-medium text-surface">Add</Text>
         </TouchableOpacity>
@@ -74,7 +77,7 @@ export default function PantryScreen() {
                 name={item.name}
                 daysLeft={item.daysLeft}
                 totalDays={item.totalDays}
-                onPress={() => router.push(`/pantry/details?id=${item.id}`)}
+                onPress={() => router.push(`/pantryItem?id=${item.id}`)}
               />
             </View>
           );

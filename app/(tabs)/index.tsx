@@ -122,7 +122,7 @@ export default function HomeScreen() {
                                 name={item.name}
                                 daysLeft={item.daysLeft}
                                 totalDays={item.totalDays}
-                                onPress={() => router.push(`/pantry/details?id=${item.id}`)}
+                                onPress={() => router.push(`/pantryItem?id=${item.id}`)}
                             />
                         </View>
                     );

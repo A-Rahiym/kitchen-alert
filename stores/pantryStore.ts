@@ -10,6 +10,7 @@ export interface PantryItem {
 
 interface PantryState {
   items: PantryItem[];
+  addItem: (item: PantryItem) => void;
   updateItem: (id: string, data: Partial<PantryItem>) => void;
 }
 
@@ -24,6 +25,7 @@ const mockItems: PantryItem[] = [
 
 export const usePantryStore = create<PantryState>((set) => ({
   items: mockItems,
+  addItem: (item) => set((s) => ({ items: [...s.items, item] })),
   updateItem: (id, data) =>
     set((s) => ({
       items: s.items.map((i) => (i.id === id ? { ...i, ...data } : i)),
