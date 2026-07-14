@@ -19,7 +19,7 @@ export default function AddItemScreen() {
     <View className="flex-1 bg-white">
       <ScrollView className="flex-1 px-5 pt-6">
         <View className="flex-row items-center justify-between mb-4">
-          <TouchableOpacity onPress={() => router.back()}>
+          <TouchableOpacity onPress={() => router.replace('/pantry')}>
             <Close width={18} height={18} color={colors.heading} />
           </TouchableOpacity>
           <TouchableOpacity className="flex-row items-center gap-1 border border-stroke rounded-lg px-3 py-1.5">

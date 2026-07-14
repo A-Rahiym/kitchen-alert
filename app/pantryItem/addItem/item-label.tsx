@@ -12,11 +12,10 @@ export default function ItemLabelScreen() {
   const [label, setLabel] = useState(name || "");
   const displayName = decodeURIComponent(name || "Item");
   const Icon = getPantryIconByKey(icon || "gas");
-
   return (
     <View className="flex-1 bg-white">
       <ScrollView className="flex-1 px-6 pt-6">
-        <TouchableOpacity onPress={() => router.back()} className="mb-6">
+        <TouchableOpacity onPress={() => router.replace('/pantry')} className="mb-6">
           <Close width={18} height={18} color={colors.heading} />
         </TouchableOpacity>
 

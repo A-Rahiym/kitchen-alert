@@ -14,7 +14,7 @@ export default function FrequencyScreen() {
   return (
     <View className="flex-1 bg-white flex-col justify-between">
       <View className="px-6 pt-4">
-        <TouchableOpacity onPress={() => router.back()} className="p-1 -ml-1">
+        <TouchableOpacity onPress={() => router.replace('/pantry')} className="p-1 -ml-1">
           <Close width={24} height={18} color={colors.heading} />
         </TouchableOpacity>
       </View>
