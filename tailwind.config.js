@@ -23,7 +23,7 @@ module.exports = {
         accent: "#D32F2F",
         background: "#FFF8F0",
         border: "#E5E1DA",
-        surface: "#FFFFFF",
+        surface: "#F6F4F2",
         "surface-alt": "#FFF0E0",
         heading: "#0D1F2D",
         body: "#0D1F2D",

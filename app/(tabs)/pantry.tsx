@@ -66,7 +66,7 @@ export default function PantryScreen() {
       <ScrollView
       className="flex-1"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{  flexDirection: "row", justifyContent: "items-center", flexWrap: "wrap",  gap: 12, paddingBottom: 0 }}
+        contentContainerStyle={{  flexDirection: "row", justifyContent: "center", flexWrap: "wrap",  gap: 12, paddingBottom: 0 }}
       >
         {enriched.map((item) => {
           const Icon = getPantryIconByKey(item.icon);

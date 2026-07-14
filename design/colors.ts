@@ -27,6 +27,6 @@ export const colors = {
 
   statusExpired: "#D32F2F",
   statusExpiring: "#F5A623",
-  statusFresh: "#4CAF50",
+  statusFresh: "#35D987",
 } as const;
 export type ColorKey = keyof typeof colors;
