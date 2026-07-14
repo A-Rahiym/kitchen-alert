@@ -10,28 +10,32 @@ import Back from "@/assets/icons/ui/back.svg";
 
 export default function ReviewScreen() {
   const router = useRouter();
-  const { name, icon,  price } = useLocalSearchParams<{
+  const { name, icon, frequency, people, price } = useLocalSearchParams<{
     name: string; icon: string; frequency: string; people: string; refillDate: string; price: string;
   }>();
   const displayName = decodeURIComponent(name || "Item");
   const ItemIcon = getPantryIconByKey(icon || "gas");
   const formattedPrice = new Intl.NumberFormat("en-US").format(Number(price) || 0);
   const daysLeft = 10;
+  const addItem = usePantryStore((s) => s.addItem);
+  const addTransaction = useTransactionStore((s) => s.addTransaction);
 
   function handleAddItem() {
     const now = new Date();
     const dateStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
     const newId = `p${Date.now()}`;
 
-    usePantryStore.getState().addItem({
+    addItem({
       id: newId,
       name: displayName,
       itemSize: "12.5kg",
       thresholdDays: 7,
       icon: icon || "gas",
+      frequency: Number(frequency) || 3,
+      people: Number(people) || 4,
     });
 
-    useTransactionStore.getState().addTransaction({
+    addTransaction({
       id: `${newId}-init`,
       itemId: newId,
       date: dateStr,

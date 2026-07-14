@@ -27,12 +27,13 @@ export default function ReviewScreen() {
 
     const Icon = getPantryIconByKey(item.icon);
 
+    const addTransaction = useTransactionStore((s) => s.addTransaction);
+
     function handleSetRemain() {
         const now = new Date();
         const dateStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
-        const transactionStore = useTransactionStore.getState();
 
-        transactionStore.addTransaction({
+        addTransaction({
             id: `${item.id}-${Date.now()}`,
             itemId: item.id,
             date: dateStr,
