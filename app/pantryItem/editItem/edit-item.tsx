@@ -12,20 +12,18 @@ export default function EditItemScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const item = usePantryStore((s) => s.items.find((i) => i.id === id));
-  console.log("Editing item:", item);
   const [label, setLabel] = useState(item?.name || "");
-  const [frequency, setFrequency] = useState(3);
-  const [people, setPeople] = useState(4);
+  const [frequency, setFrequency] = useState(item?.frequency ?? 3);
+  const [people, setPeople] = useState(item?.people ?? 4);
 
-  const usePantryStoreState = usePantryStore();
+  const updateItem = usePantryStore((s) => s.updateItem);
 
   const handleSave = () => {
     if (!item) return;
-    usePantryStoreState.updateItem(item.id, {
+    updateItem(item.id, {
       name: label,
-      itemSize: item.itemSize,
-      icon: item.icon,
-
+      frequency,
+      people,
     });
 
     router.replace(`/pantryItem?id=${item.id}`);
@@ -117,20 +115,18 @@ export default function EditItemScreen() {
 
       <View className="px-6 pb-10 space-y-2 gap-3">
         <TouchableOpacity
-          onPress={() => router.push(`/pantryItem/editItems/delete-item?id=${id}`)}
+          onPress={() => router.push(`/pantryItem/editItem/delete-item?id=${id}`)}
           className="w-full py-4 border border-stroke rounded-2xl"
         >
           <Text className="text-center font-semibold text-base text-red-500">Delete item</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={handleSave}
+          onPress={handleSave}
           className="w-full py-4 rounded-2xl bg-primary items-center"
         >
           <Text className="text-white font-semibold text-base">Save</Text>
         </TouchableOpacity>
       </View>
-
-
     </View>
   );
 }

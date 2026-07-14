@@ -10,12 +10,14 @@ export default function DeleteItemScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [checked, setChecked] = useState(false);
+  const removeItem = usePantryStore((s) => s.removeItem);
+  const removeTransactions = useTransactionStore((s) => s.removeTransactionsByItemId);
 
   function handleDelete() {
     if (!checked || !id) return;
-    usePantryStore.getState().removeItem(id);
-    useTransactionStore.getState().removeTransactionsByItemId(id);
-    router.replace(`/pantryItem/editItems/item-deleted`);
+    removeItem(id);
+    removeTransactions(id);
+    router.replace(`/pantryItem/editItem/item-deleted`);
   }
 
   return (
