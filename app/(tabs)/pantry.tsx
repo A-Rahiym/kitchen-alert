@@ -18,7 +18,7 @@ export default function PantryScreen() {
   const enriched = useEnrichedPantryItems();
 
   return (
-    <View className="flex-1 font-sans bg-background p-4 pt-6">
+    <View className="flex-1 font-sans bg-background px-4 pt-6">
       <View className="w-full mb-2 flex-row items-center justify-between">
         <Text className="text-3xl font-sans font-bold text-heading">Pantry</Text>
         <TouchableOpacity
@@ -66,7 +66,7 @@ export default function PantryScreen() {
       <ScrollView
       className="flex-1"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{  flexDirection: "row", justifyContent: "center", flexWrap: "wrap",  gap: 12 }}
+        contentContainerStyle={{  flexDirection: "row", justifyContent: "center", flexWrap: "wrap",  gap: 12, paddingBottom: 0 }}
       >
         {enriched.map((item) => {
           const Icon = getPantryIconByKey(item.icon);
