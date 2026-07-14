@@ -22,7 +22,7 @@ export default function PantryScreen() {
       <View className="w-full mb-2 flex-row items-center justify-between">
         <Text className="text-3xl font-sans font-bold text-heading">Pantry</Text>
         <TouchableOpacity
-          onPress={() => router.push("/pantryItem/addItem")}
+          onPress={() => router.push("/pantryItem/addItem/items")}
           className="flex-row items-center bg-tertiary gap-2 p-3 rounded-xl"
         >
           <Add width={12} height={12} fill={colors.surface} />
@@ -66,7 +66,7 @@ export default function PantryScreen() {
       <ScrollView
       className="flex-1"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{  flexDirection: "row", justifyContent: "center", flexWrap: "wrap",  gap: 12, paddingBottom: 0 }}
+        contentContainerStyle={{  flexDirection: "row",  flexWrap: "wrap",  gap: 12, paddingBottom: 0 }}
       >
         {enriched.map((item) => {
           const Icon = getPantryIconByKey(item.icon);

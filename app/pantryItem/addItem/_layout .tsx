@@ -18,9 +18,8 @@ export default function PantryLayout() {
         presentation: "modal",
         animation: "slide_from_bottom",
 
-      }} >
-
-      </Stack>
+      }} 
+      />
     </View>
   );
 }
