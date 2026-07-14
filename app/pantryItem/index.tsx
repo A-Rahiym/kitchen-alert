@@ -43,10 +43,10 @@ export default function PantryDetailScreen() {
   }));
 
   return (
-    <ScrollView className="flex-1 px-6 py-2 bg-background">
+    <ScrollView className="flex-1 h-90 px-6 py-2 bg-background">
       <View className="flex-row items-center justify-between mb-2">
         <View className="flex-row items-center gap-4">
-          <TouchableOpacity onPress={() => router.back()}>
+          <TouchableOpacity onPress={() => router.replace("/pantry")}>
             <Back width={16} height={16} color={colors.muted} />
           </TouchableOpacity>
           <Text className="text-xl font-bold text-heading">{item.name}</Text>

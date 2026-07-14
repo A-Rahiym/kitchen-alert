@@ -13,7 +13,14 @@ export default function PantryLayout() {
         paddingBottom: insets.bottom,
       }}
     >
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{
+        headerShown: false,
+        presentation: "modal",
+        animation: "slide_from_bottom",
+
+      }} >
+
+      </Stack>
     </View>
   );
 }
