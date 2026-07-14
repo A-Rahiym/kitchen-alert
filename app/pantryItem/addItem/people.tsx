@@ -2,6 +2,7 @@ import { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { colors } from "@/design";
+import { Stepper } from "@/components/ui/Stepper";
 import Close from "@/assets/icons/ui/close.svg";
 import Back from "@/assets/icons/ui/back.svg";
 
@@ -36,23 +37,11 @@ export default function PeopleScreen() {
         </TouchableOpacity>
 
         <View className="flex-1 items-center justify-center mb-12">
-          <View className="flex-row items-center justify-between w-full max-w-[280px]">
-            <TouchableOpacity
-              onPress={() => setValue((v) => Math.max(1, v - 1))}
-              className="w-16 h-16 rounded-full border-2 border-stroke items-center justify-center"
-            >
-              <Text className="text-2xl text-heading">−</Text>
-            </TouchableOpacity>
-
-            <Text className="text-7xl font-semibold tracking-tighter text-heading">{value}</Text>
-
-            <TouchableOpacity
-              onPress={() => setValue((v) => v + 1)}
-              className="w-16 h-16 rounded-full bg-tertiary items-center justify-center"
-            >
-              <Text className="text-2xl text-white">+</Text>
-            </TouchableOpacity>
-          </View>
+          <Stepper
+            value={value}
+            onDecrement={() => setValue((v) => Math.max(1, v - 1))}
+            onIncrement={() => setValue((v) => v + 1)}
+          />
         </View>
       </View>
 

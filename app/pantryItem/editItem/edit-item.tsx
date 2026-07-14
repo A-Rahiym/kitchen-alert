@@ -3,10 +3,10 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView } from "react-nativ
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { colors } from "@/design";
 import { usePantryStore } from "@/stores/pantryStore";
-import { useTransactionStore } from "@/stores/transactionStore";
 import { getPantryIconByKey } from "@/features/pantry/utils";
+import { Stepper } from "@/components/ui/Stepper";
+import { ChevronCircle } from "@/components/ui/ChevronCircle";
 import Close from "@/assets/icons/ui/close.svg";
-import {ChevronCircle}  from "@/components/ui/ChevronCircle";
 
 export default function EditItemScreen() {
   const router = useRouter();
@@ -37,7 +37,7 @@ export default function EditItemScreen() {
 
   return (
     <View className="flex-1 bg-white">
-      <ScrollView className="flex-1 px-6">
+      <View className="flex-1 px-6">
         <TouchableOpacity onPress={() => router.replace('/pantry')} className="mb-6">
           <Close width={18} height={18} color={colors.heading} />
         </TouchableOpacity>
@@ -57,7 +57,7 @@ export default function EditItemScreen() {
             <Text className="font-bold text-base text-heading">{item.name}</Text>
             <Text className="text-sm text-muted">{item.itemSize}</Text>
           </View>
-          <ChevronCircle width={12} height={12}  />
+          <ChevronCircle width={12} height={12} />
         </TouchableOpacity>
 
         <View className="mt-2">
@@ -73,44 +73,29 @@ export default function EditItemScreen() {
           />
         </View>
 
-        <View className="mt-2">
-          <Text className="text-sm font-medium text-muted mb-4">Frequency</Text>
-          <View className="flex-row items-center justify-between w-full ">
-            <TouchableOpacity
-              onPress={() => setFrequency((v) => Math.max(0, v - 1))}
-              className="w-12 h-12 rounded-full border border-stroke items-center justify-center"
-            >
-              <Text className="text-xl text-muted">−</Text>
-            </TouchableOpacity>
-            <Text className="text-4xl font-semibold text-heading">{frequency}</Text>
-            <TouchableOpacity
-              onPress={() => setFrequency((v) => v + 1)}
-              className="w-12 h-12 rounded-full bg-heading items-center justify-center"
-            >
-              <Text className="text-xl text-white">+</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <View className="flex flex-col items-center w-full">
 
-        <View className="mt-10 mb-10">
-          <Text className="text-sm font-medium text-muted mb-4">People</Text>
-          <View className="flex-row items-center justify-between w-full">
-            <TouchableOpacity
-              onPress={() => setPeople((v) => Math.max(1, v - 1))}
-              className="w-12 h-12 rounded-full border border-stroke items-center justify-center"
-            >
-              <Text className="text-xl text-muted">−</Text>
-            </TouchableOpacity>
-            <Text className="text-4xl font-semibold text-heading">{people}</Text>
-            <TouchableOpacity
-              onPress={() => setPeople((v) => v + 1)}
-              className="w-12 h-12 rounded-full bg-heading items-center justify-center"
-            >
-              <Text className="text-xl text-white">+</Text>
-            </TouchableOpacity>
+          <View className="mt-2">
+            <Text className="text-sm font-medium text-muted mb-4">Frequency</Text>
+            <Stepper
+              size="sm"
+              value={frequency}
+              onDecrement={() => setFrequency((v) => Math.max(0, v - 1))}
+              onIncrement={() => setFrequency((v) => v + 1)}
+            />
+          </View>
+
+          <View className="mt-10 mb-10">
+            <Text className="text-sm font-medium text-muted mb-4">People</Text>
+            <Stepper
+              size="sm"
+              value={people}
+              onDecrement={() => setPeople((v) => Math.max(1, v - 1))}
+              onIncrement={() => setPeople((v) => v + 1)}
+            />
           </View>
         </View>
-      </ScrollView>
+      </View>
 
 
       <View className="px-6 pb-10 space-y-2 gap-3">
