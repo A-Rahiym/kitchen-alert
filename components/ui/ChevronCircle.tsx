@@ -6,12 +6,14 @@ type ChevronCircleProps = {
   onPress?: () => void;
   color?: string;
   className?: string;
+  width?: number;
+  height?: number;
 };
 
-export function ChevronCircle({ onPress, color = colors.muted, className }: ChevronCircleProps) {
+export function ChevronCircle({ onPress, color = colors.muted, className, width, height }: ChevronCircleProps) {
   const content = (
     <View className={`flex justify-center items-center w-6 h-6 p-3 rounded-full bg-background ${className || ""}`}>
-      <Chevron width={8} height={8} color={color} />
+      <Chevron width={width} height={height} color={color} />
     </View>
   );
 

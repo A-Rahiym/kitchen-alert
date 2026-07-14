@@ -12,6 +12,7 @@ interface TransactionState {
   transactions: Transaction[];
   addTransaction: (t: Transaction) => void;
   removeTransaction: (id: string) => void;
+  removeTransactionsByItemId: (itemId: string) => void;
 }
 
 const now = new Date();
@@ -36,4 +37,7 @@ export const useTransactionStore = create<TransactionState>((set) => ({
   transactions: mockTransactions,
   addTransaction: (t) => set((s) => ({ transactions: [...s.transactions, t] })),
   removeTransaction: (id) => set((s) => ({ transactions: s.transactions.filter((t) => t.id !== id) })),
+  removeTransactionsByItemId: (itemId) => set((s) => ({
+    transactions: s.transactions.filter((t) => t.itemId !== itemId),
+  })),
 }));

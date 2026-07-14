@@ -12,6 +12,7 @@ interface PantryState {
   items: PantryItem[];
   addItem: (item: PantryItem) => void;
   updateItem: (id: string, data: Partial<PantryItem>) => void;
+  removeItem: (id: string) => void;
 }
 
 const mockItems: PantryItem[] = [
@@ -29,5 +30,9 @@ export const usePantryStore = create<PantryState>((set) => ({
   updateItem: (id, data) =>
     set((s) => ({
       items: s.items.map((i) => (i.id === id ? { ...i, ...data } : i)),
+    })),
+  removeItem: (id) =>
+    set((s) => ({
+      items: s.items.filter((i) => i.id !== id),
     })),
 }));
