@@ -51,7 +51,10 @@ export default function PantryDetailScreen() {
           </TouchableOpacity>
           <Text className="text-xl font-bold text-heading">{item.name}</Text>
         </View>
-        <TouchableOpacity className="flex-row items-center bg-tertiary gap-2 px-4 py-1.5 rounded-xl">
+        <TouchableOpacity
+          onPress={() => router.push(`/pantryItem/editItems/edit-item?id=${id}`)}
+          className="flex-row items-center bg-tertiary gap-2 px-4 py-1.5 rounded-xl"
+        >
           <Edit width={14} height={14} color={colors.inverse} />
           <Text className="text-sm font-medium text-inverse">Edit</Text>
         </TouchableOpacity>
