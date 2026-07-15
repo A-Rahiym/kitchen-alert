@@ -6,7 +6,7 @@ import Add from "@/assets/icons/ui/add.svg";
 import Search from "@/assets/icons/ui/search.svg";
 import Arrow from "@/assets/icons/ui/arrow.svg";
 import { SegmentedSwitch } from "@/components/ui/segmentedswitch";
-import { PantryItemCard } from "@/components/ui/PantryItemCard";
+import { PantryItemCard } from "@/components/shared/PantryItemCard";
 import { usePantryStore } from "@/stores/pantryStore";
 import { useEnrichedPantryItems } from "@/features/pantry/hooks/useEnrichedPantryItems";
 import { getPantryIconByKey } from "@/features/pantry/utils";

@@ -6,7 +6,7 @@ import Graph from "@/assets/icons/ui/graph.svg";
 import Arrow from "@/assets/icons/ui/arrow.svg";
 import { colors } from "@/design";
 import { SummaryCard } from "@/features/home/components/SummaryCard";
-import { PantryItemCard } from "@/components/ui/PantryItemCard";
+import { PantryItemCard } from "@/components/shared/PantryItemCard";
 import Add from "@/assets/icons/ui/add.svg";
 import { useMonthlySpend } from "@/hooks/useMonthlySpend";
 import { useBudgetRemaining } from "@/hooks/useBudgetRemaining";

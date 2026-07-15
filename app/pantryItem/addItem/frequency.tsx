@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { colors } from "@/design";
-import { Stepper } from "@/components/ui/Stepper";
+import { Stepper } from "@/components/shared/Stepper";
 import Close from "@/assets/icons/ui/close.svg";
 import Back from "@/assets/icons/ui/back.svg";
 

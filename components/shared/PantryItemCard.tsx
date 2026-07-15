@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import { Donut } from "./Donut";
+import { Donut } from "../ui/Donut";
 import { calculatePercentage, getDonutColor } from "../../features/pantry/utils";
 
 type PantryItemCardProps = {
