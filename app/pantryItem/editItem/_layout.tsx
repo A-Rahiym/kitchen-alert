@@ -9,7 +9,7 @@ export default function EditItemsLayout() {
       className="flex-1 bg-white"
       style={{
         // paddingTop: insets.top ,
-        paddingBottom: insets.bottom,
+        // paddingBottom: insets.bottom,
       }}
     >
       <Stack screenOptions={{

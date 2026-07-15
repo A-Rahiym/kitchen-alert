@@ -4,9 +4,10 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 import { colors } from "@/design";
 import { usePantryStore } from "@/stores/pantryStore";
 import { getPantryIconByKey } from "@/features/pantry/utils";
-import { Stepper } from "@/components/ui/Stepper";
+import { Stepper } from "@/components/shared/Stepper";
 import { ChevronCircle } from "@/components/ui/ChevronCircle";
 import Close from "@/assets/icons/ui/close.svg";
+import { PantryItemMiniCard } from "@/components/shared/pantryItemMiniCard";
 
 export default function EditItemScreen() {
   const router = useRouter();
@@ -49,16 +50,9 @@ export default function EditItemScreen() {
           </Text>
         </View>
 
-        <TouchableOpacity className="flex-row items-center p-3 border border-border rounded-2xl my-2">
-          <View className="w-16 h-16 items-center justify-center mr-4">
-            <Icon width={48} height={48} color={colors.primaryLight} />
-          </View>
-          <View className="flex-1">
-            <Text className="font-bold text-base text-heading">{item.name}</Text>
-            <Text className="text-sm text-muted">{item.itemSize}</Text>
-          </View>
-          <ChevronCircle width={12} height={12} />
-        </TouchableOpacity>
+        <View className=" my-2">
+          <PantryItemMiniCard item={item} />
+        </View>
 
         <View className="mt-2">
           <View className="flex-row justify-between items-center mb-2">
@@ -96,8 +90,6 @@ export default function EditItemScreen() {
           </View>
         </View>
       </View>
-
-
       <View className="px-6 pb-10 space-y-2 gap-3">
         <TouchableOpacity
           onPress={() => router.push(`/pantryItem/editItem/delete-item?id=${id}`)}

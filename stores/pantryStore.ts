@@ -38,3 +38,4 @@ export const usePantryStore = create<PantryState>((set) => ({
       items: s.items.filter((i) => i.id !== id),
     })),
 }));
+

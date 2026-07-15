@@ -9,7 +9,6 @@ export default function PantryLayout() {
       className="flex-1 bg-background"
       style={{
         paddingTop: insets.top,
-        paddingBottom: insets.bottom,
       }}
     >
       <Stack
