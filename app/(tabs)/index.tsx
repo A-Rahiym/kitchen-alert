@@ -97,12 +97,14 @@ export default function HomeScreen() {
                 <View className="w-full flex-row items-center justify-between gap-2">
                     <View className="flex-row items-center gap-2">
                         <Text className="text-body font-medium text-1xl">Pantry list</Text>
-                        <TouchableOpacity className="bg-white w-10 py-2 h-5 flex items-center justify-center">
+                        <TouchableOpacity className="bg-white w-100 h-15 justify-center">
                             <Add width={10} height={10} color={colors.tabActive} />
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity className="flex-row items-center gap-2">
-                        <Text className="text-body font-medium text-sm">View all</Text>
+                    <TouchableOpacity className="flex-row justify-center items-center  gap-5"
+                    onPress={() => router.replace('/pantry')}
+                    >
+                        <Text className="text-muted font-medium text-md">View all</Text>
                         <Arrow width={9} height={9} color={colors.tabInactive} />
                     </TouchableOpacity>
                 </View>
@@ -122,7 +124,7 @@ export default function HomeScreen() {
                                 name={item.name}
                                 daysLeft={item.daysLeft}
                                 totalDays={item.totalDays}
-                                onPress={() => router.push(`/pantryItem?id=${item.id}`)}
+                                onPress={() => router.push(`/pantry/${item.id}`)}
                             />
                         </View>
                     );
