@@ -41,7 +41,7 @@ export default function ReviewScreen() {
             category: item.name.toLowerCase().replace(/\s+/g, "-"),
         });
 
-        router.replace(`/pantryItem?id=${id}`);
+        router.replace(`/pantry/${id}`);
     }
 
     return (

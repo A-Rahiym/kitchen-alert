@@ -32,7 +32,7 @@ export default function RemainScreen() {
     return (
         <View className="flex-1 bg-white flex-col justify-between">
             <View className="px-5 pt-3 pb-2">
-                <TouchableOpacity onPress={() => router.back()} className="p-1 -ml-1">
+                <TouchableOpacity onPress={() => router.replace(`/pantry/${id}`)} className="p-1 -ml-1">
                     <Close width={16} height={16} color={colors.heading} />
                 </TouchableOpacity>
             </View>
@@ -84,7 +84,7 @@ export default function RemainScreen() {
 
             <View className="p-6 pb-8 mb-14">
                 <TouchableOpacity
-                    onPress={() => router.replace(`/pantryItem/refill?id=${id}&option=${selected}`)}
+                    onPress={() => router.replace(`/modals/pantry/refill?id=${id}&option=${selected}`)}
                     className="w-full bg-white border  border-stroke  p-4 rounded-xl active:scale-[0.98]"
                 >
                     <Text className="text-md font-medium text-heading text-center">Continue to refill</Text>

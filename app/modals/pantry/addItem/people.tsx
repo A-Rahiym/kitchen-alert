@@ -47,7 +47,7 @@ export default function PeopleScreen() {
 
       <View className="px-6 pb-8 pt-4 mb-12">
         <TouchableOpacity
-          onPress={() => router.push(`/pantryItem/addItem/refill?name=${encodeURIComponent(displayName)}&icon=${icon}&frequency=${frequency}&people=${value}`)}
+          onPress={() => router.push(`/modals/pantry/addItem/refill?name=${encodeURIComponent(displayName)}&icon=${icon}&frequency=${frequency}&people=${value}`)}
           className="w-full py-4 px-6 border-2 border-stroke rounded-xl"
         >
           <Text className="text-center font-bold text-base text-heading">Set people</Text>

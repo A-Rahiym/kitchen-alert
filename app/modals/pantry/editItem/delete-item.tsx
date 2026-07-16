@@ -17,7 +17,7 @@ export default function DeleteItemScreen() {
     if (!checked || !id) return;
     removeItem(id);
     removeTransactions(id);
-    router.replace(`/pantryItem/editItem/item-deleted`);
+    router.replace(`/modals/pantry/editItem/item-deleted`);
   }
 
   return (

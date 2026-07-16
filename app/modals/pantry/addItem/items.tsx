@@ -53,7 +53,7 @@ export default function AddItemScreen() {
                   key={cat.id}
                   name={cat.name}
                   icon={cat.icon}
-                  onPress={() => router.push(`/pantryItem/addItem/item-label?name=${encodeURIComponent(cat.name)}&icon=${cat.icon}`)}
+                  onPress={() => router.push(`/modals/pantry/addItem/item-label?name=${encodeURIComponent(cat.name)}&icon=${cat.icon}`)}
                 />
             )}
           </View>
@@ -67,7 +67,7 @@ export default function AddItemScreen() {
                 key={item.id}
                 name={item.name}
                 icon={item.icon}
-                onPress={() => router.push(`/pantryItem/addItem/item-label?name=${encodeURIComponent(item.name)}&icon=${item.icon}`)}
+                onPress={() => router.push(`/modals/pantry/addItem/item-label?name=${encodeURIComponent(item.name)}&icon=${item.icon}`)}
               />
             ))}
           </View>

@@ -1,13 +1,14 @@
 import { Stack } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { View } from "react-native";
+// import { colors } from "@/design";
 
 export default function PantryLayout() {
   const insets = useSafeAreaInsets();
   return (
     <View
-      className="flex-1 bg-background"
       style={{
+        flex: 1,
         paddingTop: insets.top,
       }}
     >
@@ -17,7 +18,10 @@ export default function PantryLayout() {
           presentation: "modal",
           animation: "slide_from_bottom",
         }}
-      />
+      >
+
+      </Stack>
+
     </View>
   );
 }

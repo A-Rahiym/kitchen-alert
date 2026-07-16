@@ -3,8 +3,7 @@ import { View, Text, TextInput, Switch, TouchableOpacity } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { colors } from "@/design";
 import { usePantryStore } from "@/stores/pantryStore";
-import { ChevronCircle } from "@/components/ui/ChevronCircle";
-import { getPantryIconByKey } from "@/features/pantry/utils";
+import { PantryItemMiniCard}  from "@/components/shared/pantryItemMiniCard";
 import Close from "@/assets/icons/ui/close.svg";
 import Back from "@/assets/icons/ui/back.svg";
 
@@ -26,11 +25,10 @@ export default function RefillScreen() {
     );
   }
 
-  const Icon = getPantryIconByKey(item.icon);
   return (
     <View className="flex-1 bg-white flex-col justify-between">
       <View className="px-5 pt-3 pb-2">
-        <TouchableOpacity onPress={() => router.back()} className="p-1 -ml-1">
+        <TouchableOpacity onPress={() => router.replace(`/pantry/${id}`)} className="p-1 -ml-1">
           <Close width={16} height={16} color={colors.heading} />
         </TouchableOpacity>
       </View>
@@ -44,24 +42,16 @@ export default function RefillScreen() {
         </View>
 
         <TouchableOpacity
-          onPress={() => router.back()}
+          onPress={() => router.replace(`/modals/pantry/remain?id=${id}`)}
           className="flex-row items-center gap-3 mb-6"
         >
           <Back width={18} height={18} color={colors.heading} />
           <Text className="font-semibold text-heading text-0.5xl">Remain</Text>
         </TouchableOpacity>
 
-        <View className="border border-border rounded-xl p-4 flex-row items-center gap-4 mb-4">
-          <View className="w-14 h-14 bg-stroke  rounded-xl items-center justify-center">
-            <Icon width={32} height={32} color={colors.body} />
-          </View>
-          <View className="flex-1">
-            <Text className="text-lg font-bold text-heading">{item.name}</Text>
-            <Text className="text-muted">{item.itemSize}</Text>
-          </View>
-          <ChevronCircle />
-        </View>
-
+        <PantryItemMiniCard
+        item={item}
+        />
         <View className="space-y-4">
           <View className="flex-row items-center justify-between -gap-1 border-b border-border pb-2">
             <Text className="text-md font-semibold text-heading">Refilled in full</Text>
@@ -118,7 +108,7 @@ export default function RefillScreen() {
 
       <View className="p-6 mb-10">
         <TouchableOpacity
-          onPress={() => router.replace(`/pantryItem/review?id=${id}&kg=${kg}&price=${price}`)}
+          onPress={() => router.replace(`/modals/pantry/review?id=${id}&kg=${kg}&price=${price}`)}
           className="w-full bg-primary py-4 rounded-2xl"
         >
           <Text className="text-white font-bold text-lg text-center">Continue</Text>

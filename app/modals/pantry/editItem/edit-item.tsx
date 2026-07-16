@@ -3,9 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView } from "react-nativ
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { colors } from "@/design";
 import { usePantryStore } from "@/stores/pantryStore";
-import { getPantryIconByKey } from "@/features/pantry/utils";
 import { Stepper } from "@/components/shared/Stepper";
-import { ChevronCircle } from "@/components/ui/ChevronCircle";
 import Close from "@/assets/icons/ui/close.svg";
 import { PantryItemMiniCard } from "@/components/shared/pantryItemMiniCard";
 
@@ -26,15 +24,15 @@ export default function EditItemScreen() {
       frequency,
       people,
     });
-
-    router.replace(`/pantryItem?id=${item.id}`);
+    router.replace(`/pantry/${item.id}`);
   };
+
 
 
   if (!item) {
     return null;
   }
-  const Icon = getPantryIconByKey(item.icon);
+
 
   return (
     <View className="flex-1 bg-white">
@@ -92,7 +90,7 @@ export default function EditItemScreen() {
       </View>
       <View className="px-6 pb-10 space-y-2 gap-3">
         <TouchableOpacity
-          onPress={() => router.push(`/pantryItem/editItem/delete-item?id=${id}`)}
+          onPress={() => router.push(`/modals/pantry/editItem/delete-item?id=${id}`)}
           className="w-full py-4 border border-stroke rounded-2xl"
         >
           <Text className="text-center font-semibold text-base text-red-500">Delete item</Text>

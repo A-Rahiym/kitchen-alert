@@ -56,7 +56,7 @@ export default function ItemLabelScreen() {
 
       <View className="px-6 pb-6">
         <TouchableOpacity
-          onPress={() => router.push(`/pantryItem/addItem/frequency?name=${encodeURIComponent(label || displayName)}&icon=${icon}`)}
+          onPress={() => router.push(`/modals/pantry/addItem/frequency?name=${encodeURIComponent(label || displayName)}&icon=${icon}`)}
           className="w-full py-4 border border-stroke rounded-2xl mb-8"
         >
           <Text className="text-center font-semibold text-base text-heading">Set label</Text>
