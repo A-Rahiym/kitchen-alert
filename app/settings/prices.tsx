@@ -35,7 +35,7 @@ export default function PricesScreen() {
               name={item.name}
               icon={item.icon}
               price={item.price}
-              onEdit={() => router.push(`/shared/edit-price?id=${item.id}`)}
+              onEdit={() => router.push(`/modals/settings/shared/edit-price?id=${item.id}`)}
             />
           ))}
         </View>

@@ -44,7 +44,7 @@ export default function BudgetScreen() {
           <Text className="text-xl font-bold text-heading">Monthly Budget</Text>
           <View className="flex-1" />
           <TouchableOpacity
-            onPress={() => router.push('/shared/edit-budget')}
+            onPress={() => router.push('/modals/settings/shared/edit-budget')}
             className="flex-row items-center bg-tertiary gap-2 px-4 py-1.5 rounded-xl"
           >
             <Edit width={14} height={14} color={colors.inverse} />
@@ -58,7 +58,7 @@ export default function BudgetScreen() {
           spent={dist.fundedTotal}
           pctUsed={dist.pctUsed}
           excess={dist.excess}
-          onAdjust={() => router.push('/shared/edit-budget')}
+          onAdjust={() => router.push('/modals/settings/shared/edit-budget')}
         />
 
         <View className="mt-4 mb-2">
