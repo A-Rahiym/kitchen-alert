@@ -22,7 +22,7 @@ export default function PantryScreen() {
       <View className="w-full mb-2 flex-row items-center justify-between">
         <Text className="text-3xl font-sans font-bold text-heading">Pantry</Text>
         <TouchableOpacity
-          onPress={() => router.push("/pantryItem/addItem/items")}
+          onPress={() => router.push("/modals/pantry/addItem/items")}
           className="flex-row items-center bg-tertiary gap-2 p-3 rounded-xl"
         >
           <Add width={12} height={12} fill={colors.surface} />
@@ -30,12 +30,11 @@ export default function PantryScreen() {
         </TouchableOpacity>
       </View>
 
-      <View className="my-2 w-full bg-surface flex-row items-center py-2 px-3 rounded-xl gap-2 border border-stroke">
+      <View className="mb-3 w-full bg-surface flex-row items-center py-2 px-3 rounded-xl gap-2 border border-stroke">
         <Search width={12} height={12} color={colors.tabInactive} />
         <TextInput
-          placeholder="Search pantry items"
-          
-          className="flex-1 text-body text-xs font-light py-2"
+          placeholder="Search pantry"
+          className="flex-1 text-body text-md font-light py-1"
         />
       </View>
 
@@ -66,7 +65,7 @@ export default function PantryScreen() {
       <ScrollView
       className="flex-1"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{  flexDirection: "row", justifyContent: "center", flexWrap: "wrap",  gap: 12, paddingBottom: 0 }}
+        contentContainerStyle={{  flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap",  gap: 12,  paddingLeft: 5, paddingRight: 5,  }}
       >
         {enriched.map((item) => {
           const Icon = getPantryIconByKey(item.icon);
@@ -77,7 +76,7 @@ export default function PantryScreen() {
                 name={item.name}
                 daysLeft={item.daysLeft}
                 totalDays={item.totalDays}
-                onPress={() => router.push(`/pantryItem?id=${item.id}`)}
+                onPress={() => router.push(`/pantry/${item.id}`)}
               />
             </View>
           );
