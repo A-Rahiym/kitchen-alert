@@ -30,7 +30,7 @@ export default function SettingsScreen() {
                 subtitle={item.subtitle}
                 hasToggle={item.hasToggle}
                 showDivider={index !== settingsItems.length - 1}
-                onPress={() => router.push(`/settings/${item.id}`)}
+                onPress={() => router.replace(`/settings/${item.id}`)}
               />
             ))}
           </View>

@@ -102,7 +102,7 @@ export default function HomeScreen() {
                         </TouchableOpacity>
                     </View>
                     <TouchableOpacity className="flex-row justify-center items-center  gap-5"
-                    onPress={() => router.replace('/pantry')}
+                    onPress={() => router.push('/pantry')}
                     >
                         <Text className="text-muted font-medium text-md">View all</Text>
                         <Arrow width={9} height={9} color={colors.tabInactive} />
