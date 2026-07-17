@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Slot } from "expo-router";
+import { Slot, Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import {
   Inter_400Regular,
@@ -26,5 +26,31 @@ export default function RootLayout() {
 
   if (!fontsLoaded) return null;
 
-  return <Slot />;
+  return (
+    console.log("RootLayout rendered"),
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="(tabs)" 
+      options={{ headerShown: false }} 
+      />
+      <Stack.Screen name="settings" 
+      options={{ headerShown: false }}
+       />
+      <Stack.Screen name="pantry" 
+      options={{ headerShown: false }} 
+      />
+      <Stack.Screen name="(modals)"
+        options={{
+          presentation: "formSheet",
+          animation: "slide_from_right",
+          sheetInitialDetentIndex: 0,
+          sheetGrabberVisible: true,
+          sheetCornerRadius: 24,
+        }}
+      />
+    </Stack>
+  );
 }
