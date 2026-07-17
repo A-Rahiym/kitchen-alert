@@ -57,7 +57,7 @@ export default function PriceScreen() {
 
       <View className="px-6 pb-6 mb-12">
         <TouchableOpacity
-          onPress={() => router.push(`/modals/pantry/addItem/review?name=${encodeURIComponent(displayName)}&icon=${icon}&frequency=${frequency}&people=${people}&refillDate=${refillDate}&price=${amount}`)}
+          onPress={() => router.push(`/pantry/addItem/review?name=${encodeURIComponent(displayName)}&icon=${icon}&frequency=${frequency}&people=${people}&refillDate=${refillDate}&price=${amount}`)}
           className="w-full py-4 px-6 border border-stroke rounded-2xl"
         >
           <Text className="text-center font-semibold text-base text-heading">Set price</Text>

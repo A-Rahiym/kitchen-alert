@@ -24,7 +24,7 @@ export default function EditItemScreen() {
       frequency,
       people,
     });
-    router.replace(`/pantry/${item.id}`);
+    router.back();
   };
 
 
@@ -90,7 +90,7 @@ export default function EditItemScreen() {
       </View>
       <View className="px-6 pb-10 space-y-2 gap-3">
         <TouchableOpacity
-          onPress={() => router.push(`/modals/pantry/editItem/delete-item?id=${id}`)}
+          onPress={() => router.push(`/pantry/editItem/delete-item?id=${id}`)}
           className="w-full py-4 border border-stroke rounded-2xl"
         >
           <Text className="text-center font-semibold text-base text-red-500">Delete item</Text>

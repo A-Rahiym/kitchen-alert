@@ -42,7 +42,7 @@ export default function RefillScreen() {
         </View>
 
         <TouchableOpacity
-          onPress={() => router.replace(`/modals/pantry/remain?id=${id}`)}
+          onPress={() => router.push(`/pantry/remain?id=${id}`)}
           className="flex-row items-center gap-3 mb-6"
         >
           <Back width={18} height={18} color={colors.heading} />
@@ -108,7 +108,7 @@ export default function RefillScreen() {
 
       <View className="p-6 mb-10">
         <TouchableOpacity
-          onPress={() => router.replace(`/modals/pantry/review?id=${id}&kg=${kg}&price=${price}`)}
+          onPress={() => router.replace(`/pantry/review?id=${id}&kg=${kg}&price=${price}`)}
           className="w-full bg-primary py-4 rounded-2xl"
         >
           <Text className="text-white font-bold text-lg text-center">Continue</Text>

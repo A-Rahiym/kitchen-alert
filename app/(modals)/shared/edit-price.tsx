@@ -2,6 +2,7 @@ import { useState, useRef, useMemo } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { colors } from "@/design";
+import { usePathname } from "expo-router";
 import Close from "@/assets/icons/ui/close.svg";
 import { PantryItemMiniCard } from "@/components/shared/pantryItemMiniCard";
 
@@ -12,6 +13,8 @@ import { usePantryStore } from "@/stores/pantryStore";
 
 export default function ChangePriceScreen() {
 
+  console.log("current Route", usePathname());
+  
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const items = usePantryStore((s) => s.items);
@@ -41,13 +44,13 @@ export default function ChangePriceScreen() {
       amount: Number(amount),
       category: item?.name ?? "",
     });
-    router.replace("/settings/prices");
+    router.back();
   };
 
   return (
     <View className="flex-1 bg-white flex-col justify-between">
       <View className="px-6 pt-4">
-        <TouchableOpacity onPress={() => router.replace("/settings/prices")} className="p-2 -ml-2">
+        <TouchableOpacity onPress={() => router.back()} className="p-2 -ml-2">
           <Close width={18} height={18} color={colors.heading} />
         </TouchableOpacity>
       </View>

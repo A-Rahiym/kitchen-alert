@@ -47,7 +47,7 @@ export default function FrequencyScreen() {
 
       <View className="px-6 pb-6 mb-12">
         <TouchableOpacity
-          onPress={() => router.push(`/modals/pantry/addItem/people?name=${encodeURIComponent(displayName)}&icon=${icon}&frequency=${value}`)}
+          onPress={() => router.push(`/pantry/addItem/people?name=${encodeURIComponent(displayName)}&icon=${icon}&frequency=${value}`)}
           className="w-full py-4 px-6 border border-stroke rounded-2xl"
         >
           <Text className="text-center font-semibold text-base text-heading">Set frequency</Text>

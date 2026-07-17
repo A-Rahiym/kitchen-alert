@@ -17,13 +17,13 @@ export default function ChangeBudgetScreen() {
 
   const handleSave = () => {
     updateBudget("b1", { limit: Number(amount) });
-    router.replace("/settings/budget");
+    router.back();
   };
 
   return (
     <View className="flex-1 bg-white flex-col justify-between">
       <View className="px-6 pt-4">
-        <TouchableOpacity onPress={() => router.replace("/settings/budget")} className="p-2 -ml-2">
+        <TouchableOpacity onPress={() => router.back()} className="p-2 -ml-2">
           <Close width={18} height={18} color={colors.heading} />
         </TouchableOpacity>
       </View>

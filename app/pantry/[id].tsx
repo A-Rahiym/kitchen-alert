@@ -13,8 +13,10 @@ import { ChevronCircle } from "@/components/ui/ChevronCircle";
 import Edit from "@/assets/icons/ui/edit.svg";
 import Back from "@/assets/icons/ui/back.svg";
 import Chevron from "@/assets/icons/ui/arrow.svg";
+import { usePathname } from "expo-router";
 
 export default function PantryDetailScreen() {
+  console.log("current Route", usePathname());
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const item = usePantryStore((s) => s.items.find((i) => i.id === id));
@@ -46,13 +48,13 @@ export default function PantryDetailScreen() {
     <ScrollView className="flex-1 h-90 px-6 py-2 bg-background">
       <View className="flex-row items-center justify-between mb-2">
         <View className="flex-row items-center gap-4">
-          <TouchableOpacity onPress={() => router.replace("/pantry")}>
+          <TouchableOpacity onPress={() => router.back()}>
             <Back width={16} height={16} color={colors.muted} />
           </TouchableOpacity>
           <Text className="text-xl font-bold text-heading">{item.name}</Text>
         </View>
         <TouchableOpacity
-          onPress={() => router.push(`/modals/pantry/editItem/edit-item?id=${id}`)}
+          onPress={() => router.push(`/pantry/editItem/edit-item?id=${id}`)}
           className="flex-row items-center bg-tertiary gap-2 px-4 py-1.5 rounded-xl"
         >
           <Edit width={14} height={14} color={colors.inverse} />
@@ -75,7 +77,7 @@ export default function PantryDetailScreen() {
               <Text className="text-md font-bold text-heading">Remain</Text>
               <Text className="text-md text-muted">ⓘ</Text>
             </View>
-            <ChevronCircle width={10} height={10} onPress={() => router.replace(`/modals/pantry/remain?id=${id}`)} />
+            <ChevronCircle width={10} height={10} onPress={() => router.replace(`/pantry/remain?id=${id}`)} />
           </View>
           <View className="flex-row items-end justify-between">
             <View>
@@ -90,7 +92,7 @@ export default function PantryDetailScreen() {
           <View className="flex-row items-center justify-between">
             <Text className="text-md font-bold text-heading">Price</Text>
             <ChevronCircle width={10} height={10} 
-            onPress={() => router.replace(`/modals/settings/shared/edit-price?id=${id}`)}
+            onPress={() => router.push(`/shared/edit-price?id=${id}`)}
             />
           </View>
           <View>
@@ -115,7 +117,7 @@ export default function PantryDetailScreen() {
             className="w-full"
             onLayout={(e) => setChartWidth(e.nativeEvent.layout.width)}
           >
-            {chartWidth > 0 && (
+            {(chartWidth > 0 ) && (
               <BarChart
                 width={chartWidth}
                 data={barData}

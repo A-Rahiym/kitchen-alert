@@ -22,7 +22,7 @@ export default function PantryScreen() {
       <View className="w-full mb-2 flex-row items-center justify-between">
         <Text className="text-3xl font-sans font-bold text-heading">Pantry</Text>
         <TouchableOpacity
-          onPress={() => router.push("/modals/pantry/addItem/items")}
+          onPress={() => router.push("/pantry/addItem/items")}
           className="flex-row items-center bg-tertiary gap-2 p-3 rounded-xl"
         >
           <Add width={12} height={12} fill={colors.surface} />

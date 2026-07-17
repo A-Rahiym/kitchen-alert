@@ -84,7 +84,7 @@ export default function RemainScreen() {
 
             <View className="p-6 pb-8 mb-14">
                 <TouchableOpacity
-                    onPress={() => router.replace(`/modals/pantry/refill?id=${id}&option=${selected}`)}
+                    onPress={() => router.replace(`/pantry/refill?id=${id}&option=${selected}`)}
                     className="w-full bg-white border  border-stroke  p-4 rounded-xl active:scale-[0.98]"
                 >
                     <Text className="text-md font-medium text-heading text-center">Continue to refill</Text>
