@@ -13,10 +13,9 @@ import { ChevronCircle } from "@/components/ui/ChevronCircle";
 import Edit from "@/assets/icons/ui/edit.svg";
 import Back from "@/assets/icons/ui/back.svg";
 import Chevron from "@/assets/icons/ui/arrow.svg";
-import { usePathname } from "expo-router";
+
 
 export default function PantryDetailScreen() {
-  console.log("current Route", usePathname());
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const item = usePantryStore((s) => s.items.find((i) => i.id === id));

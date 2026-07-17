@@ -13,7 +13,7 @@ export default function PricesScreen() {
     <View className="flex-1 bg-background">
       <ScrollView className="flex-1 px-5 pt-4" showsVerticalScrollIndicator={false}>
         <View className="flex-row items-center gap-4 mb-3">
-          <TouchableOpacity onPress={() => router.replace("/settings")}>
+          <TouchableOpacity onPress={() => router.back()}>
             <Back width={20} height={20} color={colors.heading} />
           </TouchableOpacity>
           <Text className="text-xl font-bold text-heading">Prices</Text>

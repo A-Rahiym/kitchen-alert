@@ -29,7 +29,6 @@ export default function HomeScreen() {
                 paddingTop: 18,
                 paddingLeft: 18,
                 paddingRight: 18,
-                paddingBottom: 18,
             }}
             contentContainerStyle={{
                 flexGrow: 1,
@@ -48,7 +47,7 @@ export default function HomeScreen() {
                 </View>
             </View>
 
-            <View className="w-full rounded-lg bg-surface border border-[#E5E1DA] p-4">
+            <View className="w-full rounded-lg bg-surface border border-border p-4">
                 <View className="flex-row items-center justify-between gap-2 px-4">
                     <View className="gap-2 flex-col">
                         <Text className="text-body font-bold text-sm">Monthly Spend</Text>
@@ -58,10 +57,14 @@ export default function HomeScreen() {
                     <Graph width={96} height={96} color={colors.tabInactive} />
                 </View>
                 <View className="flex-row items-center justify-between gap-2 my-2">
-                    <TouchableOpacity className="mt-4 w-1/2 rounded-lg bg-primary py-2">
+                    <TouchableOpacity className="mt-4 w-1/2 rounded-lg bg-primary py-2"
+                    onPress={() => router.push('/settings/prices')}
+                    >
                         <Text className="text-center text-white text-sm font-medium">Edit Prices</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity className="mt-4 w-1/2 rounded-lg border border-[#E5E1DA] py-2">
+                    <TouchableOpacity className="mt-4 w-1/2 rounded-lg border border-border py-2"
+                    onPress={() => router.push('/shared/edit-budget')}
+                    >
                         <Text className="text-center text-body text-sm font-medium">Edit Budget</Text>
                     </TouchableOpacity>
                 </View>
