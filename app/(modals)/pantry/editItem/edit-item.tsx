@@ -36,7 +36,7 @@ export default function EditItemScreen() {
 
   return (
     <View className="flex-1 bg-white">
-      <View className="flex-1 px-6">
+      <View className="flex-1 px-6 py-5">
         <TouchableOpacity onPress={() => router.replace('/pantry')} className="mb-6">
           <Close width={18} height={18} color={colors.heading} />
         </TouchableOpacity>
