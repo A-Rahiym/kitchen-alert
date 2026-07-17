@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Navbar } from "../../components/ui/Navbar";
-import { colors } from "../../design";
+import { Navbar } from "@/components/ui/Navbar";
+import { colors } from "@/design";
 
 const tabs = [
   { name: "index", title: "Home", icon: "home" as const },
