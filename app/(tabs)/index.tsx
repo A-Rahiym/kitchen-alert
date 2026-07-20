@@ -36,39 +36,43 @@ export default function HomeScreen() {
                 alignItems: "center",
             }}
         >
-            <View className="w-full mb-4 flex-row items-center gap-2 justify-between px-6">
-                <View className="flex-row items-center">
-                    <Text className="mt-2 text-body font-medium text-xl">Morning,</Text>
-                    <Text className="mt-2 text-black font-bold text-xl"> Adam</Text>
-                </View>
-                <View className="flex-row items-center gap-6">
-                    <Bell width={18} height={18} color={colors.tabInactive} stroke={colors.primary} />
-                    <View className="w-[38px] h-[38px] rounded-full bg-primary-light" />
-                </View>
-            </View>
-
-            <View className="w-full rounded-lg bg-surface border border-border p-4">
-                <View className="flex-row items-center justify-between gap-2 px-4">
-                    <View className="gap-2 flex-col">
-                        <Text className="text-body font-bold text-sm">Monthly Spend</Text>
-                        <Text className="mt-2 text-3xl font-bold text-body">₦{monthlySpend.toLocaleString()}.00</Text>
-                        <Text className="text-body font-light text-sm">2% vs last month</Text>
+                <View className="w-full mb-4 flex-row items-center gap-2 justify-between px-6">
+                    <View className="flex-row items-center">
+                        <Text className="mt-2 text-body font-medium text-xl">Morning,</Text>
+                        <Text className="mt-2 text-black font-bold text-xl"> Adam</Text>
                     </View>
-                    <Graph width={96} height={96} color={colors.tabInactive} />
-                </View>
-                <View className="flex-row items-center justify-between gap-2 my-2">
-                    <TouchableOpacity className="mt-4 w-1/2 rounded-lg bg-primary py-2"
-                    onPress={() => router.push('/settings/prices')}
+                    <TouchableOpacity className="flex-row items-center gap-6"
+                        onPress={() => router.push('/mealtable')}
                     >
-                        <Text className="text-center text-white text-sm font-medium">Edit Prices</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity className="mt-4 w-1/2 rounded-lg border border-border py-2"
-                    onPress={() => router.push('/shared/edit-budget')}
-                    >
-                        <Text className="text-center text-body text-sm font-medium">Edit Budget</Text>
+                        <Bell width={18} height={18} color={colors.tabInactive} stroke={colors.primary} />
+                        <View className="w-[38px] h-[38px] rounded-full bg-primary-light" />
                     </TouchableOpacity>
                 </View>
-            </View>
+
+                <View className="w-full rounded-lg bg-surface border border-border p-4">
+                    <View className="flex-row items-center justify-between gap-2 px-4">
+                        <View className="gap-2 flex-col">
+                            <Text className="text-body font-bold text-sm">Monthly Spend</Text>
+                            <Text className="mt-2 text-3xl font-bold text-body">₦{monthlySpend.toLocaleString()}.00</Text>
+                            <Text className="text-body font-light text-sm">2% vs last month</Text>
+                        </View>
+                        <Graph width={96} height={96} color={colors.tabInactive} />
+                    </View>
+                    <View className="flex-row items-center justify-between gap-2 my-2">
+                        <TouchableOpacity className="mt-4 w-1/2 rounded-lg bg-primary py-2"
+                            onPress={() => router.push('/settings/prices')}
+                        >
+                            <Text className="text-center text-white text-sm font-medium">Edit Prices</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity className="mt-4 w-1/2 rounded-lg border border-border py-2"
+                            onPress={() => router.push('/shared/edit-budget')}
+                        >
+                            <Text className="text-center text-body text-sm font-medium">Edit Budget</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+
 
             <View className="flex-row justify-start gap-2 mt-3">
                 <SummaryCard title="Kitchen Budget" amount={`₦${(budget.limit / 1000)}K`} remaining={`₦${budget.remaining.toLocaleString()} left`} />
@@ -105,7 +109,7 @@ export default function HomeScreen() {
                         </TouchableOpacity>
                     </View>
                     <TouchableOpacity className="flex-row justify-center items-center  gap-5"
-                    onPress={() => router.push('/pantry')}
+                        onPress={() => router.push('/pantry')}
                     >
                         <Text className="text-muted font-medium text-md">View all</Text>
                         <Arrow width={9} height={9} color={colors.tabInactive} />
