@@ -27,7 +27,6 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    console.log("RootLayout rendered"),
     <Stack
       screenOptions={{
         headerShown: false,
@@ -45,7 +44,7 @@ export default function RootLayout() {
       <Stack.Screen name="(modals)"
         options={{
           presentation: "formSheet",
-          animation: "slide_from_right",
+          animation: "slide_from_bottom",
           sheetInitialDetentIndex: 0,
           sheetGrabberVisible: true,
           sheetCornerRadius: 24,

@@ -38,7 +38,7 @@ export default function PantryScreen() {
         />
       </View>
 
-      <View className="mt-2 w-full p-0.5  rounded-xl">
+      <View className="mt-2 w-full p-0.5 rounded-xl">
         <SegmentedSwitch
           value={selected}
           onChange={setSelected}
@@ -50,7 +50,7 @@ export default function PantryScreen() {
       </View>
 
       <View className="w-full flex-row items-center justify-between mt-3 mb-2">
-        <View className="flex-row items-center gap-2">
+        <View className="flex-row items-center gap-2 px-2">
           <Text className="text-body font-medium text-lg">All items</Text>
           <View className="w-8 h-8 rounded-full bg-primary-light items-center justify-center">
             <Text className="text-body font-bold text-sm">{items.length}</Text>
