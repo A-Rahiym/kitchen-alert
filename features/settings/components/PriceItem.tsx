@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { colors } from "@/design";
 import { getPantryIconByKey } from "@/features/pantry/utils";
 import Arrange from "@/assets/icons/ui/arrange.svg";
-import Edit from "@/assets/icons/ui/editV2.svg";
+import Edit from "@/assets/icons/ui/editDark.svg";
 
 type PriceItemProps = {
   name: string;

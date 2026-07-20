@@ -2,13 +2,13 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { colors } from "@/design";
 import { getPantryIconByKey } from "@/features/pantry/utils";
 
-type PopularItemCardProps = {
+type ItemCardProps = {
   name: string;
   icon: string;
   onPress?: () => void;
 };
 
-export function PopularItemCard({ name, icon, onPress }: PopularItemCardProps) {
+export function ItemCard({ name, icon, onPress }: ItemCardProps) {
   const ItemIcon = getPantryIconByKey(icon);
   return (
     <TouchableOpacity

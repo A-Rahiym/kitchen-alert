@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View, Text, TextInput, ScrollView, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import { categoryGroups, popularItems } from "@/features/pantry/data";
-import { PopularItemCard } from "@/features/pantry/components/PopularItemCard";
+import { ItemCard } from "@/features/pantry/components/ItemCard";
 import { colors } from "@/design";
 import Close from "@/assets/icons/ui/close.svg";
 import Search from "@/assets/icons/ui/search.svg";
@@ -49,7 +49,7 @@ export default function AddItemScreen() {
           <Text className="text-lg font-semibold text-heading mb-4">Categories to name</Text>
           <View className="flex-row gap-3">
             {categoryGroups.map((cat) => 
-                <PopularItemCard
+                <ItemCard
                   key={cat.id}
                   name={cat.name}
                   icon={cat.icon}
@@ -63,7 +63,7 @@ export default function AddItemScreen() {
           <Text className="text-lg font-semibold text-heading mb-4">Popular items</Text>
           <View className="flex-row flex-wrap gap-3">
             {filtered.map((item) => (
-              <PopularItemCard
+              <ItemCard
                 key={item.id}
                 name={item.name}
                 icon={item.icon}
