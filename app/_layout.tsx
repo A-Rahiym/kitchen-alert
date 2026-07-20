@@ -38,9 +38,15 @@ export default function RootLayout() {
       <Stack.Screen name="settings" 
       options={{ headerShown: false }}
        />
-      <Stack.Screen name="pantry" 
+      {/* <Stack.Screen name="pantry" 
       options={{ headerShown: false }} 
-      />
+      /> */}
+
+      <Stack.Screen name="mealtable"
+        options={{ 
+          headerShown: false,
+
+        }}/>
       <Stack.Screen name="(modals)"
         options={{
           presentation: "formSheet",
