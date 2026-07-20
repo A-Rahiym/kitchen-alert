@@ -76,7 +76,7 @@ export default function PantryDetailScreen() {
               <Text className="text-md font-bold text-heading">Remain</Text>
               <Text className="text-md text-muted">ⓘ</Text>
             </View>
-            <ChevronCircle width={10} height={10} onPress={() => router.replace(`/pantry/remain?id=${id}`)} />
+            <ChevronCircle width={10} height={10} onPress={() => router.push(`/pantry/remain?id=${id}`)} />
           </View>
           <View className="flex-row items-end justify-between">
             <View>

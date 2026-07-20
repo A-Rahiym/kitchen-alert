@@ -32,7 +32,7 @@ export default function RemainScreen() {
     return (
         <View className="flex-1 bg-white flex-col justify-between">
             <View className="px-5 pt-3 pb-2">
-                <TouchableOpacity onPress={() => router.replace(`/pantry/${id}`)} className="p-1 -ml-1">
+                <TouchableOpacity onPress={() => router.back()} className="p-1 -ml-1">
                     <Close width={16} height={16} color={colors.heading} />
                 </TouchableOpacity>
             </View>
