@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import { SegmentedSwitch } from "@/components/ui/segmentedswitch";
 import { LineChart, BarChart } from "react-native-gifted-charts";
@@ -23,6 +23,7 @@ export default function InsightsScreen() {
   const transactions = useTransactionStore((s) => s.transactions);
   const items = usePantryStore((s) => s.items);
 
+
   return (
     <View className="flex-1 items-center justify-start bg-background p-6">
       <View className="w-full flex-col items-start justify-between">
@@ -40,7 +41,6 @@ export default function InsightsScreen() {
           ]}
         />
       </View>
-
       <View className="my-4 w-full rounded-2xl bg-surface border border-border py-4">
         <View className="flex justify-between gap-2 px-4">
           <View className="gap-1 flex-col">
@@ -131,16 +131,17 @@ export default function InsightsScreen() {
       ) : (
 
         <View className="mt-2 w-full rounded-2xl bg-surface border border-border py-4">
-          <ScrollView showsVerticalScrollIndicator={false}>
-            {transactions.map((tx, index) => {
+          <ScrollView >
+            {transactions.map((tx) => {
               const item = items.find((i) => i.id === tx.itemId);
               return (
+
                 <TransactionItem
                   key={tx.id}
-                  name={item?.name ?? tx.category}
-                  amount={tx.amount}
+                  item={item}
+                  transaction={tx}
                   onPress={() => router.push(`/pantry/${tx.itemId}`)}
-                  hideBorder={index === transactions.length - 1}
+                  hideBorder={ item?.id === transactions[transactions.length - 1].itemId }
                 />
               );
             })}
