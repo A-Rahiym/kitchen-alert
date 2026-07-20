@@ -4,6 +4,7 @@
   "main": "expo-router/entry",
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
+    "@react-native-community/datetimepicker": "9.1.0",
     "@react-native-segmented-control/segmented-control": "2.5.7",
     "expo": "~56.0.12",
     "expo-constants": "~56.0.18",
