@@ -33,6 +33,7 @@ const mockTransactions: Transaction[] = [
   { id: "t12", itemId: "p6", date: "2026-05-28", amount: 5500, category: "kerosene" },
 ];
 
+
 export const useTransactionStore = create<TransactionState>((set) => ({
   transactions: mockTransactions,
   addTransaction: (t) => set((s) => ({ transactions: [...s.transactions, t] })),
