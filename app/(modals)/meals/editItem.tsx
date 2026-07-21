@@ -99,7 +99,6 @@ export default function EditMealScreen() {
               mode="time"
               is24Hour={false}
               style={{ width: "100%" }}
-
               onChange={onChange}
             />
           )}
