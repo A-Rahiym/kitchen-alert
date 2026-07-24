@@ -11,12 +11,14 @@ import { useYearlyTotal } from "@/features/insights/hooks/useYearlyTotal";
 import { useTransactionStore } from "@/stores/transactionStore";
 import { usePantryStore } from "@/stores/pantryStore";
 import { TransactionItem } from "@/features/insights/components/TransactionItem";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
+
 
 export default function InsightsScreen() {
   const router = useRouter();
   const [selected, setSelected] = useState("month");
   const [chartWidth, setChartWidth] = useState(0);
-
+const insets = useSafeAreaInsets();
   const dailySpend = useDailySpend();
   const spendingBarData = useYearlyBarData();
   const totalYearSpend = useYearlyTotal();
@@ -25,7 +27,9 @@ export default function InsightsScreen() {
 
 
   return (
-    <View className="flex-1 items-center justify-start bg-background p-6">
+    <View className="flex-1 items-center justify-start bg-background p-6"
+    style={{ paddingTop: insets.top, }}
+    >
       <View className="w-full flex-col items-start justify-between">
         <Text className="text-3xl font-bold text-heading">Insights</Text>
         <Text className="text-body font-light text-sm">This {selected}</Text>
@@ -45,7 +49,7 @@ export default function InsightsScreen() {
         <View className="flex justify-between gap-2 px-4">
           <View className="gap-1 flex-col">
             <Text className="text-body font-bold text-md">This year</Text>
-            <Text className="mt-2 text-3xl font-bold text-body">₦{totalYearSpend.toLocaleString()}.00</Text>
+            <Text className="mt-2 text-3xl font-bold text-body">₦{(totalYearSpend ?? 0).toLocaleString()}.00</Text>
             <Text className="text-status-danger font-light text-sm">
               18% <Text className="text-muted">vs last year</Text>
             </Text>
@@ -88,7 +92,7 @@ export default function InsightsScreen() {
           <View className="flex justify-between gap-2 px-4">
             <View className="gap-2 flex-col">
               <Text className="text-body font-bold text-md">Total Spend</Text>
-              <Text className="mt-2 text-3xl font-bold text-body">₦{totalYearSpend.toLocaleString()}.00</Text>
+              <Text className="mt-2 text-3xl font-bold text-body">₦{(totalYearSpend ?? 0).toLocaleString()}.00</Text>
               <View className="mb-1 flex flex-col justify-between gap-3">
                 <View className="flex flex-row justify-start gap-3 items-center">
                   <Text className="text-status-danger font-medium text-md">2026</Text>
