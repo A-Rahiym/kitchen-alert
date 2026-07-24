@@ -1,11 +1,15 @@
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
+import { apiReference } from "@scalar/express-api-reference";
 import { config } from "./config";
 import { prisma } from "./lib/prisma";
 import { errorHandler } from "./middleware/errorHandler";
 import { notFound } from "./middleware/notFound";
 import authRoutes from "./routes/auth";
+import itemRoutes from "./routes/items";
+import purchaseRoutes from "./routes/purchases";
+import openapiSpec from "./config/openapi.json";
 
 const app: express.Express = express();
 
@@ -23,6 +27,9 @@ app.get("/health", async (_req, res) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/items", itemRoutes);
+app.use("/purchases", purchaseRoutes);
+app.use("/docs", apiReference({ content: openapiSpec }));
 
 app.use(notFound);
 app.use(errorHandler);
