@@ -43,6 +43,5 @@ yarn-error.*
 html/
 /guide.md
 
-server/backend-guide.md/
+server/backend-guide/
 server/.env
-server/.env.example
