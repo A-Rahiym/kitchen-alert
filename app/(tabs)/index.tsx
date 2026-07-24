@@ -1,155 +1,169 @@
-import { ScrollView, View, Text, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import { ScrollView, View, Text, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Bell from "@/assets/icons/ui/notification.svg";
-import Graph from "@/assets/icons/ui/graph.svg";
-import Arrow from "@/assets/icons/ui/arrow.svg";
+
+import Add from "@/assets/icons/ui/addDark.svg";
+import Meal from "@/assets/icons/ui/meal.svg";
+import { ChevronCircle } from "@/components/ui/ChevronCircle";
 import { colors } from "@/design";
-import { SummaryCard } from "@/features/home/components/SummaryCard";
-import { PantryItemCard } from "@/components/shared/PantryItemCard";
-import Add from "@/assets/icons/ui/add.svg";
-import { useMonthlySpend } from "@/hooks/useMonthlySpend";
 import { useBudgetRemaining } from "@/hooks/useBudgetRemaining";
-import { useEnrichedPantryItems } from "@/features/pantry/hooks/useEnrichedPantryItems";
 import { usePantryStore } from "@/stores/pantryStore";
+import { useMealTableStore } from "@/stores/mealTableStore";
+import { useEnrichedPantryItems } from "@/features/pantry/hooks/useEnrichedPantryItems";
 import { getPantryIconByKey } from "@/features/pantry/utils";
+import { Donut } from "@/components/ui/Donut";
+import { DateSelector } from "@/features/home/components/DateSelector";
+import { MealPlanCard } from "@/features/home/components/MealPlanCard";
+import { StatCard } from "@/features/home/components/StatCard";
+import { PromoBanner } from "@/features/home/components/PromoBanner";
+import { BudgetCard } from "@/features/home/components/BudgetCard";
+import { TotalItemsCard } from "@/features/home/components/TotalItemsCard";
+import { PantryItemCard } from "@/components/shared/PantryItemCard";
 
 export default function HomeScreen() {
+    const insets = useSafeAreaInsets();
     const router = useRouter();
+
+
     const items = usePantryStore((s) => s.items);
-    const monthlySpend = useMonthlySpend();
+    const meals = useMealTableStore((s) => s.meals);
+    const mealItems = useMealTableStore((s) => s.mealItems);
     const budget = useBudgetRemaining("b1");
     const enriched = useEnrichedPantryItems();
+
     const lowStockCount = enriched.filter((i) => i.daysLeft <= i.thresholdDays).length;
+    const budgetPct = budget.limit > 0 ? Math.round((budget.remaining / budget.limit) * 100) : 0;
+
     return (
-        <ScrollView
-            style={{
-                flex: 1,
-                backgroundColor: colors.background,
-                paddingTop: 18,
-                paddingLeft: 18,
-                paddingRight: 18,
-            }}
-            contentContainerStyle={{
-                flexGrow: 1,
-                justifyContent: "flex-start",
-                alignItems: "center",
-            }}
+        <LinearGradient
+            colors={["#FFD8B8", "#FFF8F0"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 0.4 }}
+            style={{ flex: 1 }}
         >
-                <View className="w-full mb-4 flex-row items-center gap-2 justify-between px-6">
-                    <View className="flex-row items-center">
-                        <Text className="mt-2 text-body font-medium text-xl">Morning,</Text>
-                        <Text className="mt-2 text-black font-bold text-xl"> Adam</Text>
-                    </View>
-                    <TouchableOpacity className="flex-row items-center gap-6"
-                        onPress={() => router.push('/mealtable')}
-                    >
-                        <Bell width={18} height={18} color={colors.tabInactive} stroke={colors.primary} />
-                        <View className="w-[38px] h-[38px] rounded-full bg-primary-light" />
-                    </TouchableOpacity>
-                </View>
-
-                <View className="w-full rounded-lg bg-surface border border-border p-4">
-                    <View className="flex-row items-center justify-between gap-2 px-4">
-                        <View className="gap-2 flex-col">
-                            <Text className="text-body font-bold text-sm">Monthly Spend</Text>
-                            <Text className="mt-2 text-3xl font-bold text-body">₦{monthlySpend.toLocaleString()}.00</Text>
-                            <Text className="text-body font-light text-sm">2% vs last month</Text>
-                        </View>
-                        <Graph width={96} height={96} color={colors.tabInactive} />
-                    </View>
-                    <View className="flex-row items-center justify-between gap-2 my-2">
-                        <TouchableOpacity className="mt-4 w-1/2 rounded-lg bg-primary py-2"
-                            onPress={() => router.push('/settings/prices')}
-                        >
-                            <Text className="text-center text-white text-sm font-medium">Edit Prices</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity className="mt-4 w-1/2 rounded-lg border border-border py-2"
-                            onPress={() => router.push('/shared/edit-budget')}
-                        >
-                            <Text className="text-center text-body text-sm font-medium">Edit Budget</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-
-
-            <View className="flex-row justify-start gap-2 mt-3">
-                <SummaryCard title="Kitchen Budget" amount={`₦${(budget.limit / 1000)}K`} remaining={`₦${budget.remaining.toLocaleString()} left`} />
-                <SummaryCard title="total" amount={String(items.length)} remaining={`${lowStockCount} low stock`} />
-            </View>
-
-            <View className="w-full mt-4">
-                <LinearGradient
-                    colors={[colors.tertiary, colors.tertiaryalt, colors.tertiaryLight]}
-                    start={{ x: 0, y: 1.2 }}
-                    end={{ x: 0, y: 0 }}
-                    style={{ borderRadius: 18 }}
-                >
-                    <View className="w-full flex-row items-center justify-around px-2">
-                        <View className="rounded-lg">
-                            <Text className="text-white font-medium text-sm">
-                                Go pro & never run-out of stock
-                            </Text>
-                            <Text className="text-white font-light text-xs line-clamp-2">
-                                {"Get low stock alerts and smart \n restock reminders  with KitchenAlert Pro"}
-                            </Text>
-                        </View>
-                        <Graph width={96} height={96} color={colors.tabInactive} />
-                    </View>
-                </LinearGradient>
-            </View>
-
-            <View className="mt-4 flex-row items-center justify-between px-2">
-                <View className="w-full flex-row items-center justify-between gap-2">
-                    <View className="flex-row items-center gap-2">
-                        <Text className="text-body font-medium text-1xl">Pantry list</Text>
-                        <TouchableOpacity className="bg-white w-100 h-15 justify-center">
-                            <Add width={10} height={10} color={colors.tabActive} />
-                        </TouchableOpacity>
-                    </View>
-                    <TouchableOpacity className="flex-row justify-center items-center  gap-5"
-                        onPress={() => router.push('/pantry')}
-                    >
-                        <Text className="text-muted font-medium text-md">View all</Text>
-                        <Arrow width={9} height={9} color={colors.tabInactive} />
-                    </TouchableOpacity>
-                </View>
-            </View>
-
             <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ flexDirection: "row", justifyContent: "flex-start", gap: 12, marginTop: 12 }}
+                style={{ flex: 1, paddingTop: insets.top }}
+                showsVerticalScrollIndicator={false}
             >
-                {enriched.map((item) => {
-                    const Icon = getPantryIconByKey(item.icon);
-                    return (
-                        <View key={item.id} className="w-56">
-                            <PantryItemCard
-                                icon={<Icon width={72} height={72} color={colors.tabInactive} />}
-                                name={item.name}
-                                daysLeft={item.daysLeft}
-                                totalDays={item.totalDays}
-                                onPress={() => router.push(`/pantry/${item.id}`)}
-                            />
-                        </View>
-                    );
-                })}
-            </ScrollView>
+                <View className="px-6 pt-2 pb-2 flex-row items-center justify-between">
+                    <View className="flex-row items-center gap-3">
 
-            <View className="mt-2 w-full flex-row items-center justify-between gap-2">
-                <View className="flex-row items-center gap-2">
-                    <Text className="text-body font-medium text-1xl">Bundles</Text>
-                    <TouchableOpacity className="bg-white w-10 py-2 h-5 flex rounded items-center justify-center border border-[#E5E1DA]">
-                        <Add width={10} height={10} color={colors.tabInactive} />
+                        <Image
+                            source={require('@/assets/profile/avatar.png')}
+                            className="w-18 h-18 rounded-full"
+                        />
+                        <View>
+                            <Text className="text-md text-body">
+                                Good Morning, <Text className="font-bold text-heading">Adam</Text>
+                            </Text>
+                        </View>
+                    </View>
+                    <TouchableOpacity className="relative p-2">
+                        <Bell width={20} height={20} color={colors.heading} />
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity className="flex-row items-center gap-2">
-                    <Text className="text-body font-medium text-sm">View all</Text>
-                    <Arrow width={9} height={9} color={colors.tabInactive} />
-                </TouchableOpacity>
-            </View>
-        </ScrollView>
+
+                <View className="px-6 my-2">
+                    <View className="flex-row items-center justify-between mb-2">
+                        <View className="flex-row items-center gap-2">
+                            <Meal width={15} height={15} color={colors.heading} />
+                            <Text className="text-medium font-medium text-heading">Meal Plan</Text>
+                        </View>
+                        <TouchableOpacity onPress={() => router.push("/mealtable")}>
+                            <ChevronCircle width={8} height={8} color={colors.heading} />
+                        </TouchableOpacity>
+                    </View>
+                    <DateSelector />
+                </View>
+
+                <View className="px-6 mb-4">
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                        <View className="flex-row gap-3">
+                            {meals.map((meal) => (
+                                <MealPlanCard
+                                    key={meal.type}
+                                    mealType={meal.type}
+                                    label={meal.label}
+                                    time={meal.time}
+                                    itemCount={mealItems[meal.type]?.length ?? 0}
+                                />
+                            ))}
+                        </View>
+                    </ScrollView>
+                </View>
+
+                <View className="px-6 mb-3 flex-row gap-2">
+                    <BudgetCard
+                        limit={budget.limit}
+                        remaining={budget.remaining}
+                        onPress={() => router.push("/settings/budget")}
+                    />
+                    <TotalItemsCard
+                        total={items.length}
+                        lowStockCount={2}
+                        onPress={() => router.push("/settings/prices")}
+                    />
+                </View>
+
+
+                <View className="px-6 flex-row gap-2 mb-2">
+                    <TouchableOpacity 
+                    onPress={() => router.push("/mealtable")}
+                    className="flex-1 py-2 rounded-xl bg-primary items-center shadow-xl">
+                        <Text className="text-white font-bold text-sm">Meal plan</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    onPress={() => router.push("/settings/prices")}
+                    className="flex-1 py-2 rounded-xl bg-white items-center shadow-xl">
+                        <Text className="text-body font-medium text-sm">Item prices</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View className="px-6 my-4">
+                    <PromoBanner />
+                </View>
+
+                <View className="px-6 my-4">
+                    <View className="flex-row items-center justify-between mb-2">
+                        <View className="flex-row items-center gap-4">
+                            <Text className="text-xl font-bold text-heading">Pantry list</Text>
+                            <TouchableOpacity className="bg-white py-1 px-3  rounded-lg border border-border">
+                                <Add width={10} height={10} color={colors.heading} />
+                            </TouchableOpacity>
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => router.push("/pantry")}
+                            className="flex-row items-center gap-1/2"
+                        >
+                            <Text className="text-muted text-sm font-medium">View all</Text>
+                            <ChevronCircle width={8} height={8} color={colors.heading} />
+                        </TouchableOpacity>
+                    </View>
+
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                        <View className="flex-row gap-3 pb-2">
+                            {enriched.slice(0, 6).map((item) => {
+                                const Icon = getPantryIconByKey(item.icon);
+                                return (
+                                    <View key={item.id} className="w-56 max-h-60">
+                                        <PantryItemCard
+                                            icon={<Icon width={72} height={72} color={colors.tabInactive} />}
+                                            name={item.name}
+                                            daysLeft={item.daysLeft}
+                                            totalDays={item.totalDays}
+                                            onPress={() => router.push(`/pantry/${item.id}`)}
+                                        />
+                                    </View>
+                                );
+                            })}
+                        </View>
+                    </ScrollView>
+                </View>
+            </ScrollView>
+        </LinearGradient>
     );
 }
