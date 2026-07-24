@@ -38,14 +38,19 @@ export default function ItemLabelScreen() {
         <View className="mb-12">
           <View className="flex-row justify-between items-center mb-2">
             <Text className="text-md font-medium text-muted">Quantity</Text>
+            {item?.consumptionUnit && (
+              <Text className="text-md font-medium text-muted">{item.consumptionUnit}</Text>
+            )}
           </View>
-          <TextInput
-            className="w-full bg-background border border-border rounded-xl py-3 pl-4 px-4 text-sm font-medium text-heading"
-            value={value?.toString() || ""}
-            onChangeText={(t) => setValue(parseFloat(t))}
-            maxLength={25}
-            keyboardType="numeric"
-          />
+          <View className="flex-row items-center justify-between bg-background border border-border rounded-xl px-4">
+            <TextInput
+              className="flex-1 py-3 text-sm font-medium text-heading"
+              value={value?.toString() || ""}
+              onChangeText={(t) => setValue(parseFloat(t))}
+              maxLength={25}
+              keyboardType="numeric"
+            />
+          </View>
         </View>
       </ScrollView>
 
