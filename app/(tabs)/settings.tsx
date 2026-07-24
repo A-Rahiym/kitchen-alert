@@ -3,16 +3,19 @@ import { useRouter } from "expo-router";
 import { ProfileCard } from "@/features/settings/components/ProfileCard";
 import { SettingsRow } from "@/features/settings/components/SettingsRow";
 import { settingsItems } from "@/features/settings/data";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
+
 
 export default function SettingsScreen() {
   const router = useRouter();
-
+ const insets = useSafeAreaInsets();
   return (
     <View className="flex-1 bg-background">
       <ScrollView
+      style={{ paddingTop: insets.top, }}
         className="flex-1 px-5 pt-4"
         showsVerticalScrollIndicator={false}
-      >
+>
         <Text className="text-3xl font-bold text-heading mb-5">Settings</Text>
         <View className="mb-5">
           <Text className="text-md font-bold text-body mb-3 ml-1 capitalize">Account</Text>

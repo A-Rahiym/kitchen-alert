@@ -10,15 +10,20 @@ import { PantryItemCard } from "@/components/shared/PantryItemCard";
 import { usePantryStore } from "@/stores/pantryStore";
 import { useEnrichedPantryItems } from "@/features/pantry/hooks/useEnrichedPantryItems";
 import { getPantryIconByKey } from "@/features/pantry/utils";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 export default function PantryScreen() {
   const [selected, setSelected] = useState("staples");
   const router = useRouter();
   const items = usePantryStore((s) => s.items);
   const enriched = useEnrichedPantryItems();
+  const insets = useSafeAreaInsets();
 
   return (
-    <View className="flex-1 font-sans  bg-background px-4 pt-6">
+    
+    <View className="flex-1 font-sans  bg-background px-4 pt-6"
+    style={{ paddingTop: insets.top, }}
+    >
       <View className="w-full mb-2 flex-row items-center justify-between">
         <Text className="text-3xl font-sans font-bold text-heading">Pantry</Text>
         <TouchableOpacity
