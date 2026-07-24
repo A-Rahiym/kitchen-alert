@@ -64,9 +64,9 @@ export default function MealTableScreen() {
                 const itemTx = transactions
                   .filter((t) => t.itemId === id)
                   .sort((a, b) => b.date.localeCompare(a.date));
-                return { id: item.id, name: item.name, icon: item.icon, amount: itemTx[0]?.amount ?? 0 };
+                return { id: item.id, name: item.name, icon: item.icon, quantity: 1, unit: item.consumptionUnit };
               })
-              .filter((x): x is { id: string; name: string; icon: string; amount: number } => x !== null);
+              .filter((x): x is { id: string; name: string; icon: string; quantity: number; unit?: string } => x !== null);
             return (
               <MealCard
                 key={meal.type}

@@ -5,10 +5,11 @@ import { colors } from "@/design";
 type MealItemProps = {
   name: string;
   icon: string;
-  amount: number;
+  quantity: number;
+  unit?: string;
 };
 
-export function MealItem({ name, icon, amount }: MealItemProps) {
+export function MealItem({ name, icon, quantity, unit }: MealItemProps) {
   const Icon = getPantryIconByKey(icon);
   return (
     <View className="flex-row items-center justify-between py-2">
@@ -16,9 +17,11 @@ export function MealItem({ name, icon, amount }: MealItemProps) {
         <View className="w-8 h-8 bg-surface-alt rounded-md items-center justify-center">
           <Icon width={20} height={20} color={colors.primary} />
         </View>
-        <Text className="text-sm font-medium text-heading">{name}</Text>
+        <Text className="text-md font-bold text-body">{name}</Text>
       </View>
-      <Text className="text-sm font-semibold text-muted">₦{amount.toLocaleString()}.00</Text>
+      <Text className="text-sm font-semibold text-muted">
+        {quantity} {unit || ""}
+      </Text>
     </View>
   );
 }
