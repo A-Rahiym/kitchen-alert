@@ -17,15 +17,15 @@ interface MealTableState {
 }
 
 const defaultMeals: MealSlot[] = [
-  { type: "Breakfast", label: "Meal label", time: "7:00 AM", people: 4 },
-  { type: "Lunch", label: "Meal label", time: "1:00 PM", people: 4 },
-  { type: "Dinner", label: "Meal label", time: "7:00 PM", people: 4 },
+  { type: "Breakfast", label: "Awara and bread", time: "7:00 AM", people: 4 },
+  { type: "Lunch", label: "Yam, egg and toast", time: "1:00 PM", people: 4 },
+  { type: "Dinner", label: "Dinner", time: "7:00 PM", people: 4 },
 ];
 
 const defaultMealItems: Record<string, string[]> = {
-  Breakfast: [],
-  Lunch: [],
-  Dinner: [],
+  Breakfast: ["rice", "bread"],
+  Lunch: ["yam", "egg", "toast"],
+  Dinner: ["item5", "item6"],
 };
 
 export const useMealTableStore = create<MealTableState>((set) => ({
