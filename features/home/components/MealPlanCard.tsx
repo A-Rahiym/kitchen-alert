@@ -27,7 +27,7 @@ export function MealPlanCard({ mealType, label, time, itemCount }: MealPlanCardP
       <View>
         <Text className="text-primary text-xs font-normal mb-2.5">{itemCount} items used</Text>
         <View className="flex-row items-center gap-1.5">
-          <Time width={13} height={13} stroke={colors.border} />
+          <Time width={13} height={13} color={colors.muted} />
           <Text className="text-gray-400 text-xs">{time}</Text>
         </View>
       </View>
