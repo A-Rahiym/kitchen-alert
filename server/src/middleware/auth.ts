@@ -15,13 +15,15 @@ declare global {
   }
 }
 
+/**
+ * requireAuth — Verify the Bearer access token and attach the authenticated
+ * user's ID to `req.userId`. Returns 401 UNAUTHORIZED if the header is
+ * missing or the token is invalid/expired. Apply at the router or route level
+ * on every private endpoint.
+ */
 export function requireAuth(req: Request, _res: Response, next: NextFunction) {
-  if (config.NODE_ENV === "development") {
-    req.userId = "dev-user-id";
-    return next();
-  }
-
   const header = req.headers.authorization;
+
   if (!header?.startsWith("Bearer ")) {
     throw new AppError(401, "UNAUTHORIZED", "Missing or invalid authorization header");
   }

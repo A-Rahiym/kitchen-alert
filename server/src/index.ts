@@ -1,3 +1,4 @@
+import "express-async-errors";
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
@@ -13,7 +14,19 @@ import openapiSpec from "./config/openapi.json";
 
 const app: express.Express = express();
 
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
+      imgSrc: ["'self'", "data:", "https://cdn.jsdelivr.net"],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'", "https://cdn.jsdelivr.net"],
+      objectSrc: ["'none'"],
+    },
+  },
+}));
 app.use(cors());
 app.use(express.json({ limit: "100kb" }));
 
