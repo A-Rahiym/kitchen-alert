@@ -45,7 +45,7 @@ export default function HomeScreen() {
             style={{ flex: 1 }}
         >
             <ScrollView
-                style={{ flex: 1, paddingTop: insets.top }}
+                style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}
                 showsVerticalScrollIndicator={false}
             >
                 <View className="px-6 pt-2 pb-2 flex-row items-center justify-between">

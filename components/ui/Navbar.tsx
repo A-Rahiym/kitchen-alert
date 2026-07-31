@@ -32,8 +32,8 @@ export function Navbar({
           borderTopColor: colors.stroke,
           borderTopWidth: 1,
           height: 80,
-          paddingBottom: 8,
-          paddingTop: 8,
+          paddingBottom: 4,
+          paddingTop: 4,
           ...tabBarStyle,
         },
         tabBarActiveTintColor: activeColor,
@@ -41,7 +41,7 @@ export function Navbar({
         tabBarLabelStyle: {
           fontSize: 10,
           fontWeight: "600",
-          lineHeight: 14,
+          lineHeight: 10,
           ...labelStyle,
         },
         tabBarHideOnKeyboard: true,
@@ -54,7 +54,7 @@ export function Navbar({
           options={{
             title: tab.title,
             tabBarIcon: ({ focused}) => (
-              <NavbarIcon icon={tab.icon} active={focused} size={18} />
+              <NavbarIcon icon={tab.icon} active={focused} size={15} />
             ),
           }}
         />

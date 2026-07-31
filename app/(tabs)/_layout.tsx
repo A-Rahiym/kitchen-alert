@@ -19,6 +19,7 @@ export default function TabLayout() {
     <View
       className="flex-1"
       style={{
+        paddingBottom: insets.bottom/2.5,
       }}
     >
       <Navbar
