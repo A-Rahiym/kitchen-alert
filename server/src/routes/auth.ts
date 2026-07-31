@@ -11,19 +11,26 @@ import { registerSchema, loginSchema, refreshSchema } from "../schemas/auth";
 
 const router: Router = Router();
 
+/** Hash a refresh token before storage so raw tokens are never persisted. */
 function hashToken(token: string) {
   return crypto.createHash("sha256").update(token).digest("hex");
 }
 
+/** Sign a short-lived access token (default 15m) with the user's ID. */
 function generateAccessToken(userId: string) {
   return jwt.sign({ userId }, config.JWT_SECRET, { expiresIn: config.JWT_ACCESS_EXPIRES_IN } as jwt.SignOptions);
 }
 
+/** Generate a cryptographically random raw refresh token. */
 function generateRefreshToken() {
   return crypto.randomBytes(48).toString("hex");
 }
 
-
+/**
+ * POST /auth/register — Create a new user.
+ * Hashes the password (argon2id), issues access + refresh tokens, and stores
+ * the refresh token hash in a session. 409 EMAIL_EXISTS if the email is taken.
+ */
 router.post("/register", validate(registerSchema), async (req: Request, res: Response) => {
   const { email, password, name } = req.body;
 
@@ -60,6 +67,7 @@ router.post("/register", validate(registerSchema), async (req: Request, res: Res
 });
 
 
+/** POST /auth/login — Authenticate with email + password. 401 INVALID_CREDENTIALS on failure. */
 router.post("/login", validate(loginSchema), async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
@@ -95,6 +103,11 @@ router.post("/login", validate(loginSchema), async (req: Request, res: Response)
 });
 
 
+/**
+ * POST /auth/refresh — Rotate a refresh token.
+ * Revokes the presented session and issues a fresh access + refresh token pair.
+ * 401 INVALID_TOKEN if the token is revoked or expired.
+ */
 router.post("/refresh", validate(refreshSchema), async (req: Request, res: Response) => {
   const { refreshToken } = req.body;
   const tokenHash = hashToken(refreshToken);
@@ -141,6 +154,7 @@ router.post("/refresh", validate(refreshSchema), async (req: Request, res: Respo
   });
 });
 
+/** POST /auth/logout — Revoke the presented refresh token's session. */
 router.post("/logout", requireAuth, async (req: Request, res: Response) => {
   const { refreshToken } = req.body;
 
